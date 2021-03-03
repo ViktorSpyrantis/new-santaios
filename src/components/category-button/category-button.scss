@@ -1,0 +1,16 @@
+
+#category-button {
+    text-align: center;
+    display: inline-block;
+    width: 28vw;
+    .icon {
+        width: 26vw;
+    }
+
+    .name {
+        margin-top: 0;
+        font-size: 3vw;
+        font-weight: 400;
+        color: #36454f;
+    }
+}

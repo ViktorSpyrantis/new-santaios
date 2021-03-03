@@ -1,0 +1,57 @@
+<div id="cart-modal">
+
+  <!-- CLOSE ICON -->
+  <div id="close-modal-icon-container">
+    <ion-icon id="close-modal-icon" name="close-circle-outline" [color]="grey" (click)="dismiss()"></ion-icon>
+  </div>
+
+  <h2 class="title">{{title}}</h2>
+
+  <!-- CASE WHERE THERE IS AT LEAST ONE PRODUCT IN CART -->
+  <div *ngIf="productsInCart.length > 0">
+    <div class="product" *ngFor="let product of productsInCart; let i = index" (click)="openProductPage(product)">
+      <div class="image-container">
+        <img class="image right-margin" src="{{product.image}}">
+      </div>
+
+      <div class="all-text">
+        <p class="text-line">
+          <span class="light-black right-margin">{{product.name}}</span>
+          <span class="bold-black">{{product.weight ? ('' + product.weight).replace('.', ',') : product.quantity}}</span>
+          <span class="bold-black"> {{product.weight ? 'kg' : 'τεμάχια'}}</span>
+        </p>
+        <p class="text-line">
+          <span class="light-black right-margin">{{product.weight ? weightPriceText : piecePriceText}}</span>
+          <span class="bold-black">{{product.price}}</span>
+        </p>
+      </div>
+      <ion-icon id="delete-product-icon" name="close-outline" [color]="grey" (click)="removeProduct(i)"></ion-icon>
+    </div>
+
+    <div class="total">
+      <p class="total-text">{{totalText}}  </p>
+      <p class="total-price">{{(totalPrice | number : '1.2-2').replace('.', ',')}} €</p>
+    </div>
+
+    <div class="button-container">
+      <cta-button [label]="clearCartButtonLabel" [disabled]="false" [ionIcon]="'trash-outline'" (onClick)="clearCartContent()">
+      </cta-button>
+
+      <!-- just some width between the buttons -->
+      <div style="width: 7vw; display: inline-block"></div>
+
+      <cta-button [label]="confirmButtonLabel" [ionIcon]="'arrow-forward-outline'" [disabled]="false" (onClick)="openOrderModal()">
+      </cta-button>
+    </div>
+  </div>
+
+  <!-- CASE WHERE THERE ARE NO PRODUCTS IN CART -->
+  <div *ngIf="productsInCart.length == 0" class="empty-cart"> 
+    <p class="regular-text">{{emptyCartText}}</p>
+
+    <div class="button-container">
+      <cta-button [label]="exitButtonLabel" [ionIcon]="'exit-outline'"[disabled]="false" (onClick)="dismiss()">
+      </cta-button>
+    </div>
+  </div>
+</div>

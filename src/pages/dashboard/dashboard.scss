@@ -1,0 +1,36 @@
+#dashboard {
+  min-height: 100%;
+  background-color: rgba(235, 236, 235, 0.945);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-bottom: 10vw;
+  scroll-behavior: smooth;
+  .cards-title {
+    margin-bottom: 1.5vw;
+    font-size: 4vw;
+    font-weight: 600;
+    color: rgb(133, 130, 130);
+  }
+
+  .horizontal-scroll {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    width: 100%;
+  }
+
+  .logo-container {
+    height: 60vw;
+    .logo-top {
+      position: relative;
+      bottom: 120%;
+      left: -15%;
+      min-width: 130vw;
+    }
+  }
+
+  .card-container {
+    margin-left: 3vw;
+    margin-right: 3vw;
+  }
+}

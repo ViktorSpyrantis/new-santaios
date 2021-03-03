@@ -1,0 +1,128 @@
+// #main-product-card {
+  .main-product-card-big {
+    margin-right: 2vw;
+    margin-left: 2vw;
+    width: 34vw;
+    .day {
+      text-align: center;
+      color: rgb(221, 113, 24);
+      font-size: 3.5vw;
+      font-weight: 400;
+    }
+
+    .card-container {
+      height: 37vw;
+      width: 34vw;
+      background-color: white;
+      border-radius: 4vw;
+      box-shadow: 0vw 1.3vw 2.6vw 0vw rgb(0, 0, 0, 0.5);
+      
+      .text-area {
+        height: 20%;
+        .weight {
+          display: inline-block;
+          margin-left: 2vw;
+          margin-bottom: 0;
+          color: grey;
+          font-size: 3.2vw;
+          font-weight: 300;
+        }
+        .price {
+          float: right;
+          position: relative;
+          bottom: 1vw;
+          margin-right: 2vw;
+          margin-bottom: 0;
+          color: rgb(17, 190, 46);
+          font-size: 3.8vw;
+          font-weight: 400;
+        }
+      }
+    
+      .image-container {
+        height: 80%;
+        width: 34vw;
+        // position: relative;
+        // text-align: center;        // FIXME : this generates problem of only aligning 1st card for some reason wtf 
+        .image {
+          width: 22vw;
+          margin: 5vw 6vw 0 6vw;
+        }
+        .like-icon {
+          width: 5vw;
+          float: right;
+          margin-right: 2vw;
+        }
+      }
+    }
+
+    .name {
+      color: grey;
+      font-size: 3.5vw;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+
+
+  .main-product-card-small {
+    margin-right: 2vw;
+    margin-left: 2vw;
+    margin-bottom: 11vw;
+    width: 26vw;
+    .card-container {
+      height: 29vw;
+      width: 26vw;
+      background-color: white;
+      border-radius: 3.5vw;
+      box-shadow: 0vw 1.3vw 2.6vw 0vw rgb(0, 0, 0, 0.5);
+      
+      .text-area {
+        height: 20%;
+        .weight {
+          display: inline-block;
+          margin-bottom: 0;
+          color: grey;
+          font-size: 3.2vw;
+          font-weight: 300;
+        }
+        .price {
+          float: right;
+          margin-right: 1.8vw;
+          margin-bottom: 0;
+          color: rgb(17, 190, 46);
+          font-size: 3.2vw;
+          font-weight: 400;
+        }
+      }
+    
+      .image-container {
+        height: 80%;
+        width: 26vw;
+        .image {
+          width: 19vw;
+          margin: 3vw 3.5vw 0 3.5vw;
+        }
+        .like-icon {
+          width: 4vw;
+          float: right;
+          margin-right: 2vw;
+        }
+      }
+    }
+
+    .name {
+      color: grey;
+      font-size: 3vw;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+// }

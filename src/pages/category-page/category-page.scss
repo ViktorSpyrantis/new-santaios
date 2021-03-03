@@ -1,0 +1,38 @@
+#category-page {
+  background-color: rgba(235, 236, 235, 0.945);
+  
+  #just-margin {
+    height: 5vw;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .title {
+    font-size: 5vw;
+    font-weight: 600;
+    color: rgb(18, 99, 54);
+  }
+
+  .prod-container {
+    margin: 0 2vw 0 2vw;
+    .prod-row {
+      text-align: center;
+      .prod-col {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        .prod-img {
+          width: 35vw;
+        }
+        .prod-name {
+          font-size: 3.6vw;
+          font-weight: 500;
+        }
+        .prod-price {
+          font-size: 3.8vw;
+          font-weight: 800;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<div id="custom-header">
+  <div class="container">
+    <img src="{{logo}}" class="icon logo">
+
+    <img src="{{cartIcon}}" class="icon cart" (click)="openCart()">
+
+    <div class="item-number-container" *ngIf="cartHandler.getNumOfProducts() > 0">
+      <span  class="item-number">{{cartHandler.getNumOfProducts()}}</span>
+    </div>
+  </div>
+</div>

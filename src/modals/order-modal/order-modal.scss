@@ -1,0 +1,72 @@
+#order-modal {
+  min-height: 100%;
+  background-color: rgba(235, 236, 235, 0.945);
+  overflow: scroll;
+  padding-bottom: 10vw;
+
+  #close-modal-icon-container {
+    margin-top: 3vw;
+    height: 10vw;
+    width: 100%;
+    #close-modal-icon {
+      font-size: 8.5vw;
+      float: right;
+      margin-right: 3vw;
+    }
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: 7vw; 
+    font-size: 6vw;
+    font-weight: 500;
+    color: rgb(88, 87, 87);
+  }
+
+  .form-container {
+    width: 100%;
+    .input-wrapper {
+      width: 90vw;
+      .label {
+        font-size: 3.8vw;
+      }
+      .input {
+
+      }
+    }
+
+    .reg-unit {
+      display: inline-block;
+      width: 60%;
+    }
+
+    .zip {
+      display: inline-block;
+      width: 30%;
+    }
+    .address {
+      display: inline-block;
+      width: 60%;
+    }
+    .floor {
+      display: inline-block;
+      width: 30%;
+    }
+
+    // .street {
+    //   display: inline-block;
+    //   width: 62%;
+    // }
+    // .number {
+    //   display: inline-block;
+    //   width: 30%;
+    // }
+
+  }
+
+  .button-container {
+    margin-bottom: 70vw;
+    width: 100%;
+    text-align: center;
+  }
+}

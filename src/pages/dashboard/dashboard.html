@@ -1,0 +1,57 @@
+<!--  [ngStyle]="{'background-image': 'url(' + bgImage + ')'}" -->
+<div id="dashboard">
+
+  <div class="logo-container">
+    <img class="logo-top" src="{{logoBg}}">
+  </div>
+
+  <category-list></category-list>
+
+  <!-- FIXME : DELETE ALL THESE MAYBE -->
+  <!-- <div *ngIf="loadingComplete" class="horizontal-scroll">
+    <category-button *ngFor="let cat of categoryList" [name]="cat.greek" [icon]="cat.icon" 
+       (click)="openCategory(cat.id, cat.page_title)">
+    </category-button>
+  </div> -->
+
+  
+  <div class="card-container" *ngIf="loadingComplete && weeklyOffers" >
+    <p class="cards-title">{{weeklyOffersTitle}}</p>
+    <div class="horizontal-scroll">
+      <product-card *ngFor="let prod of weeklyOffers; let i = index" [small]="false" [product]="prod.product" [dayIndex]="i">
+      </product-card>
+    </div>
+  </div>
+
+  <div class="card-container" *ngIf="loadingComplete && suggestedProducts">
+    <p class="cards-title">{{suggestedProductsTitle}}</p>
+    <div class="horizontal-scroll">
+      <product-card *ngFor="let prod of suggestedProducts" [small]="false" [product]="prod.product">
+      </product-card>
+    </div>
+  </div>
+</div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCI-SIhxGVXcKIWi_HRqGnvFcqoubQIEro",
+    authDomain: "santaios-c95ac.firebaseapp.com",
+    projectId: "santaios-c95ac",
+    storageBucket: "santaios-c95ac.appspot.com",
+    messagingSenderId: "529703409514",
+    appId: "1:529703409514:web:126d41ffcb4b9be1297713",
+    measurementId: "G-TTFS844XRN"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>

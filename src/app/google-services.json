@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "529703409514",
+    "project_id": "santaios-c95ac",
+    "storage_bucket": "santaios-c95ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529703409514:android:4a046a2d418553bd297713",
+        "android_client_info": {
+          "package_name": "io.neasanta.santaios"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529703409514-kukm7crv9aithq84tagfdedl1mgf8hc9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8yIW8UzqTr4iHPFykJiWRwAh4hpfWCm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529703409514-kukm7crv9aithq84tagfdedl1mgf8hc9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

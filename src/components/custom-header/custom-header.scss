@@ -1,0 +1,46 @@
+#custom-header {
+  height: 17vw;
+  background-color: rgb(18, 99, 54);
+
+  .container {
+    position: relative;
+    height: inherit;
+    width: 100%;
+    display: inline-flex;
+
+    .icon {
+      vertical-align: middle;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .logo {
+      width: 13vw;
+      margin-left: 5vw;
+    }
+
+    .cart {
+      width: 9vw;
+      margin-right: 5vw;
+      margin-left: auto;
+      text-align: end;
+    }
+
+    .item-number-container {
+      position: absolute;
+      display: inline-flex;
+      right: 2.5vw;
+      top: 2.5vw;
+      width: 4.5vw;
+      height: 4.5vw;
+      background-color: black;
+      .item-number {
+        color: rgb(18, 99, 54);
+        font-size: 3vw;
+        vertical-align: middle;
+        margin: auto;
+      }
+    }
+
+  }
+}

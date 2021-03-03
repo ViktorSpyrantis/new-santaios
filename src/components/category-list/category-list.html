@@ -1,0 +1,7 @@
+<div id="category-list">
+  <div class="horizontal-scroll">
+    <category-button *ngFor="let cat of categoryList" [name]="cat.greek" [icon]="cat.icon" 
+       (click)="openCategory(cat.id, cat.page_title)">
+    </category-button>
+  </div>
+</div>

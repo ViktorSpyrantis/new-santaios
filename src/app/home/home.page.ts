@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { GoogleDriveHandler } from 'src/providers/googleDriveHandler';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,13 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private driveHandler: GoogleDriveHandler
+  ) {
+    this.router.navigate(['/dashboard']);
+  }
 
 }
+
+

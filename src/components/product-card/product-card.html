@@ -1,0 +1,16 @@
+<div id="main-product-card" [ngClass]="{'main-product-card-big' : !small, 'main-product-card-small' : small}">
+  <p class="day">{{dayIndexMap.get(dayIndex)}}</p>
+  <div class="card-container" (click)="openProduct()">
+    <div class="text-area">
+      <p class="weight"><i>{{priceBasedOnWeight ? weightText : pieceText}}</i></p>
+      <p class="price">{{shownPrice}}</p>
+    </div>
+  
+    <div class="image-container">
+      <img class="image" src="{{product.image}}">
+      <!-- <img class="like-icon" src="{{likeIcon}}"> -->
+    </div> 
+  </div>
+  <p class="name">{{product.name}}</p>
+
+</div>

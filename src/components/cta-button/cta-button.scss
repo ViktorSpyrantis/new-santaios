@@ -1,0 +1,36 @@
+#cta-button {
+  text-align: center;
+  margin-top: 4vw;
+  border-radius: 7vw;
+  padding: 2vw;
+  background-color: white;
+  height: 12vw;
+  display: inline-block;
+  font-size: 5vw;
+  .icon-container {
+    width: 8.5vw;
+    height: 8.5vw;
+    border-radius: 50%;
+    float: left;
+    align-items: center;
+    .icon {
+      color: white;
+      position: relative;
+      top: 1.8vw;
+    }
+  }
+  .text {
+    margin-top: 1.5vw;
+    margin-left: 1.5vw;
+    display: inline-block;
+  }
+}
+
+#cta-button:active {
+  transform: scale(1.1);
+	transition: .0.5s;
+}
+
+#cta-button:focus {
+  outline: none;
+}

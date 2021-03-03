@@ -1,0 +1,7 @@
+<button id="cta-button" (click)="buttonClick()">
+  <div class="icon-container" [style.backgroundColor]="disabled ? 'rgb(82, 119, 99)' : 'rgb(18, 99, 54)'">
+    <ion-icon *ngIf="ionIcon" [name]="ionIcon" [color]="white" class="icon"></ion-icon>
+    <img *ngIf="icon" class="icon" src="{{icon}}">
+  </div>
+  <div class="text" [style.color]="disabled ? 'rgb(82, 119, 99)' : 'rgb(18, 99, 54)'">{{label}}</div>
+</button>

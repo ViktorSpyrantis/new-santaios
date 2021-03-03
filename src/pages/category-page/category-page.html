@@ -1,0 +1,17 @@
+<custom-header></custom-header>
+<ion-content padding id="category-page">
+  <div id="just-margin"></div>
+  <category-list></category-list>
+  <div class="text-center">
+    <h3 class="title">{{pageTitle}}</h3>
+  </div>
+
+  <ion-grid class="prod-container">
+    <ion-row class="prod-row">
+      <ion-col class="prod-col" size="4" *ngFor="let prod of products">
+        <product-card [small]="true" [product]="prod.product">
+        </product-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

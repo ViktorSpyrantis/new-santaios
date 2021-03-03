@@ -1,0 +1,30 @@
+<div id="custom-footer">
+  <ion-grid class="footer-grid">
+    <ion-row>
+      <!-- FIXME : set up correct structure here sometime -->
+      <!-- <ion-col>
+        <img src="{{likeIcon}}" class="icon">
+      </ion-col>
+
+      <ion-col>
+        <img src="{{cartIcon}}" class="icon">
+      </ion-col>
+
+      <ion-col>
+        <img src="{{homeIcon}}" class="icon">
+      </ion-col>
+
+      <ion-col>
+        <img src="{{expandIcon}}" class="icon">
+      </ion-col>
+
+      <ion-col>
+        <img src="{{logoIcon}}" class="icon">
+      </ion-col> -->
+
+      <ion-col *ngFor="let col of columnArray;" (click)="openLink(col.link)">
+        <img src="{{col.icon}}" class="icon" style.width="{{col.icon_width}}">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
