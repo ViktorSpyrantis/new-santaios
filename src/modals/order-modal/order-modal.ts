@@ -34,7 +34,7 @@ export class OrderModal {
     // number: "Αριθμός <font color='red'>*</font>",
     address: "Διεύθυνση <font color='red'>*</font>",
     floor: "Όροφος",
-    email: "Διεύθυνση email <font color='red'>*</font>",
+    email: "E-mail <font color='red'>*</font>",
     extraInfo: "Πρόσθετες πληροφορίες"
   }
 

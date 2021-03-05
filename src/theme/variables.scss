@@ -76,9 +76,11 @@
   --ion-color-light-tint: #f5f6f9;
 
   /** custom **/
-  --kos-green: #81f317;
-  --kos-yellow: #f37c0d;
-  --kos-brown: #7a3304;
+  $custom-colors: (
+    --santaios-green: #81f317,
+    --santaios-yellow: #f37c0d,
+    --santaios-brown: #7a3304
+  );
 }
 
 @media (prefers-color-scheme: dark) {

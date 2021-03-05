@@ -22,27 +22,38 @@ export class CustomFooter {
     {
       id: "back",
       link: "BACK",
-      icon_width: "7vw",
-      icon: "assets/icon/back.svg"
+      size: "7vw",
+      icon: "assets/icon/back.svg",
+      ionIcon: null
     },
     {
       id: "home",
       link: "dashboard",
-      icon_width: "7vw",
-      icon: "assets/icon/home.svg"
+      size: "7vw",
+      icon: "assets/icon/home.svg",
+      ionIcon: null
+    },
+    {
+      id: "communication",
+      link: "communication",
+      size: "7vw",
+      icon: null,
+      ionIcon: "call-outline"
     },
     {
       id: "cart",
       link: "CART",
-      icon_width: "7vw",
-      icon: "assets/icon/shopping_cart.svg"
+      size: "7vw",
+      icon: "assets/icon/shopping_cart.svg",
+      ionIcon: null
     },
     {
       // FIXME : make logo bigger
       id: "logo",
       link: "dashboard",
-      icon_width: "9vw",
-      icon: "assets/icon/logo_small.svg"
+      size: "9vw",
+      icon: "assets/icon/logo_small.svg",
+      ionIcon: null
     },
   ]
 

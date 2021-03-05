@@ -23,7 +23,9 @@
       </ion-col> -->
 
       <ion-col *ngFor="let col of columnArray;" (click)="openLink(col.link)">
-        <img src="{{col.icon}}" class="icon" style.width="{{col.icon_width}}">
+        <img *ngIf="col.icon" src="{{col.icon}}" class="icon" style.width="{{col.size}}">
+        <ion-icon *ngIf="col.ionIcon" [name]="col.ionIcon" [color]="white" class="icon"
+          style.fontSize="{{col.size}}"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>

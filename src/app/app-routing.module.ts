@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { Dashboard } from '../pages/dashboard/dashboard';
 import { CategoryPage } from '../pages/category-page/category-page'
 import { ProductPage } from 'src/pages/product-page/product-page';
+import { CommunicationPage } from 'src/pages/communication/communication';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'product',
     component: ProductPage
+  },
+  {
+    path: 'communication',
+    component: CommunicationPage
   }
 ];
 

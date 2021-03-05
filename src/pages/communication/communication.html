@@ -1,0 +1,56 @@
+<custom-header></custom-header>
+<ion-content padding id="communication">
+  <div class="content">
+    <!-- STORE INFO -->
+    <div class="info-container">
+      <div class="info-item">
+        <ion-icon [name]="info.address.iconName" [color]="green" class="info-item-icon"></ion-icon>
+        <p class="info-item-text">{{info.address.text}}</p>
+      </div>
+      <div class="info-item">
+        <ion-icon [name]="info.phone.iconName" [color]="green" class="info-item-icon"></ion-icon>
+        <p class="info-item-text">{{info.phone.text}}</p>
+      </div>
+      <div class="info-item">
+        <ion-icon [name]="info.email.iconName" [color]="green" class="info-item-icon"></ion-icon>
+        <p class="info-item-text">{{info.email.text}}</p>
+      </div>  
+    </div>
+
+    <!-- COMMUNICATE WITH US TEXT  -->
+    <h2 class="title">{{communicateWithUsText}}</h2>
+
+    <!-- CLIENT INFO FORM -->
+    <div class="form-container">
+      <ion-item color="rgba(235, 236, 235, 0.945)" class="name input-wrapper">
+        <ion-label class="label" position="floating" [innerHTML]="forms.nameSurname"></ion-label>
+        <ion-input required="true" autocapitalize="on" [(ngModel)]="message.name" class="input"></ion-input>
+      </ion-item>
+
+      <ion-item color="rgba(235, 236, 235, 0.945)" class="email input-wrapper">
+        <ion-label class="label" position="floating" [innerHTML]="forms.email"></ion-label>
+        <ion-input inputmode="email" type="email" inputmode="email" class="input" [(ngModel)]="message.email"></ion-input>
+      </ion-item>
+
+      <ion-item color="rgba(235, 236, 235, 0.945)" class="phone input-wrapper">
+        <ion-label class="label" position="floating" [innerHTML]="forms.phone"></ion-label>
+        <ion-input type="number" inputmode="tel" class="input" [(ngModel)]="message.phone"
+          minlength="10" maxlength="10"></ion-input>
+      </ion-item>
+
+      <ion-item color="rgba(235, 236, 235, 0.945)" class="extra-info input-wrapper">
+        <ion-label class="label" position="floating" [innerHTML]="forms.message"></ion-label>
+        <ion-textarea required="false" class="extra-info-input" [(ngModel)]="message.message"></ion-textarea>
+      </ion-item>
+    </div>
+
+    <!-- 'SEND' BUTTON -->
+    <div class="button-container">
+      <cta-button [ionIcon]="button.icon" [label]="button.label" 
+      [disabled]="!message.name || !message.email || !message.message" (onClick)="sendMessage()">
+    </cta-button>
+    </div>
+  </div>
+
+
+</ion-content>
