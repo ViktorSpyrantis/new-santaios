@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { CartHandler } from './cart-handler';
+import * as $ from 'jquery';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Injectable()
@@ -111,6 +112,27 @@ export class OrderByEmailHandler {
     //       console.log(info);
     //     }
   // });
+
+  // $.http({
+  //   method: 'POST',
+  //   url: 'src/app/php/send-order-email.php'
+  // })
+
+  $.ajax({
+    url: '../../php/send-order-email.php',
+    type: 'POST',
+    data: "formData",
+    async: false,
+    cache: false,
+    contentType: false,
+    
+    enctype: 'multipart/form-data',
+    processData: false,
+    success: function (response) {
+      alert(response);
+    }
+  });
+
   
   }
 
