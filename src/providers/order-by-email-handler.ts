@@ -4,6 +4,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { CartHandler } from './cart-handler';
 import * as $ from 'jquery';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import * as sendEmail from 'src/app/send-email.js'
 
 @Injectable()
 export class OrderByEmailHandler {
@@ -52,7 +53,7 @@ export class OrderByEmailHandler {
 
   }
 
-  public sendEmailTest() {
+  public sendEmailTest(body) {
     // let email = {
     //   to: 'marcelochello20@gmail.com',
     //   cc: 'viktorneasanta@gmail.com',
@@ -64,17 +65,17 @@ export class OrderByEmailHandler {
 
     // this.emailComposer.open(email);
 
-    var templateParams = {
-      name: 'James',
-      notes: 'Check this out!'
-    };
+    // var templateParams = {
+    //   name: 'James',
+    //   notes: 'Check this out!'
+    // };
    
-    emailjs.send('viktorneasanta@gmail.com', 'YOUR_TEMPLATE_ID', templateParams)
-      .then(function(response) {
-         console.log('SUCCESS!', response.status, response.text);
-      }, function(error) {
-         console.log('FAILED...', error);
-      });
+    // emailjs.send('viktorneasanta@gmail.com', 'YOUR_TEMPLATE_ID', templateParams)
+    //   .then(function(response) {
+    //      console.log('SUCCESS!', response.status, response.text);
+    //   }, function(error) {
+    //      console.log('FAILED...', error);
+    //   });
 
     // public sendEmail(e: Event) {
     //   e.preventDefault();
@@ -118,21 +119,63 @@ export class OrderByEmailHandler {
   //   url: 'src/app/php/send-order-email.php'
   // })
 
-  $.ajax({
-    url: '../../php/send-order-email.php',
-    type: 'POST',
-    data: "formData",
-    async: false,
-    cache: false,
-    contentType: false,
-    
-    enctype: 'multipart/form-data',
-    processData: false,
-    success: function (response) {
-      alert(response);
-    }
-  });
+  return this.http.post("http://localhost:3000/sendmail", body.email)
 
+  // setTimeout(() =>{
+
+  //   $.post(
+  //     "http://127.0.0.1:3000/src/app/mailer.php",
+  //     body.email,
+  //     function(data, status){
+  //       alert("Data: " + data + "\nStatus: " + status);
+  //     }
+  //   )
+  // }, 3000)
+
+  // setTimeout(() =>{
+  //   $.post(
+  //     "https://localhost/sendmail",
+  //     body.email,
+  //     function(data, status){
+  //       alert("Data: " + data + "\nStatus: " + status);
+  //     }
+  //   )
+  // }, 3000)
+
+  // setTimeout(() =>{
+  //   $.post(
+  //     "https://localhost:3000",
+  //     body.email,
+  //     function(data, status){
+  //       alert("Data: " + data + "\nStatus: " + status);
+  //     }
+  //   )
+  // }, 3000)
+
+
+  // $.ajax({
+  //   url: 'http://localhost/src/app/send-email.js',
+  //   type: 'POST',
+  //   data: body.email,
+  //   async: true,
+  //   cache: false,
+  //   contentType: false,
+  //   crossDomain:true,
+  //   enctype: 'multipart/form-data',
+  //   processData: false,
+  //   success: function (response) {
+  //     alert(response);
+  //   }
+  // });
+
+
+  // let headers = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  //   })
+  // }
+
+  // return this.http.post("http://localhost/src/app/send-email.js", body, headers)
   
   }
 

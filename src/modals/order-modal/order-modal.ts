@@ -138,13 +138,13 @@ export class OrderModal {
   }
 
   requiredFieldsNotFilled(): boolean {
-    if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
-      this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
-      && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
+    // if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
+    //   this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
+    //   && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
       return false;
-    else {
-      return true;
-    }
+    // else {
+    //   return true;
+    // }
   }
 
   getAreas() {
@@ -168,7 +168,9 @@ export class OrderModal {
   // FIXME : handle all functionality on a page rather than on modal maybe
   proceedWithOrder() {
     // this.emailOrder.sendOrderEmail(this.customerInfo, this.configProductsString());
-    this.emailOrder.sendEmailTest();
+    this.emailOrder.sendEmailTest({email: 'viktorneasanta@gmail.com'}).subscribe(data => {
+      console.log('DATA :', data)
+    });
     this.dismiss();
     this.cart.deleteProducts();
   }
