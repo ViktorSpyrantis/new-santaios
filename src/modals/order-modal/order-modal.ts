@@ -104,7 +104,6 @@ export class OrderModal {
         }, {
           text: 'Ναι',
           handler: () => {
-            console.log("$$$$$")
             this.proceedWithOrder();
           }
         }
@@ -138,13 +137,14 @@ export class OrderModal {
   }
 
   requiredFieldsNotFilled(): boolean {
-    if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
-      this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
-      && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
-      return false;
-    else {
-      return true;
-    }
+    // if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
+    //   this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
+    //   && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
+    //   return false;
+    // else {
+    //   return true;
+    // }
+    return false;
   }
 
   getAreas() {
@@ -168,7 +168,12 @@ export class OrderModal {
   // FIXME : handle all functionality on a page rather than on modal maybe
   proceedWithOrder() {
     // this.emailOrder.sendOrderEmail(this.customerInfo, this.configProductsString());
-    this.emailOrder.sendEmailTest();
+    // this.emailOrder.sendEmailTest();
+    this.emailOrder.getPaymentGateways().then(data => {
+      console.log("$$$  ", data)
+    }
+
+    )
     this.dismiss();
     this.cart.deleteProducts();
   }

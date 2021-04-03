@@ -11,6 +11,10 @@ export class OrderByEmailHandler {
   private email = "sandorclegane34@yahoo.gr";
   private api = "https://formspree.io/f/mdoppbed"
 
+  private url = 'https://santaios.gr';
+  private consumerKey = 'ck_c87bb8148f824506cdf02c96c690bbc2b23e8d26';
+  private consumerSecret = 'cs_e4e285d010e68fd87ad8a85c9f210b0e0e896caa';
+
   constructor(
     private emailComposer: EmailComposer,
     private http: HttpClient
@@ -64,17 +68,17 @@ export class OrderByEmailHandler {
 
     // this.emailComposer.open(email);
 
-    var templateParams = {
-      name: 'James',
-      notes: 'Check this out!'
-    };
+    // var templateParams = {
+    //   name: 'James',
+    //   notes: 'Check this out!'
+    // };
    
-    emailjs.send('viktorneasanta@gmail.com', 'YOUR_TEMPLATE_ID', templateParams)
-      .then(function(response) {
-         console.log('SUCCESS!', response.status, response.text);
-      }, function(error) {
-         console.log('FAILED...', error);
-      });
+    // emailjs.send('viktorneasanta@gmail.com', 'YOUR_TEMPLATE_ID', templateParams)
+    //   .then(function(response) {
+    //      console.log('SUCCESS!', response.status, response.text);
+    //   }, function(error) {
+    //      console.log('FAILED...', error);
+    //   });
 
     // public sendEmail(e: Event) {
     //   e.preventDefault();
@@ -135,5 +139,72 @@ export class OrderByEmailHandler {
 
   
   }
+
+  getPaymentGateways() {
+    return new Promise(resolve => {
+      // this.http.get(
+      //   `${this.url}/wp-json/wc/v3/payment_gateways?consumer_key=${
+      //     this.consumerKey
+      //   }&consumer_secret=${this.consumerSecret}`
+      // ).subscribe(data => {
+      //   resolve(data);
+      // })
+      this.http
+        .post(
+          `${this.url}/wp-json/wc/v3/orders?consumer_key=${
+            this.consumerKey
+          }&consumer_secret=${this.consumerSecret}`,
+          `{
+            "payment_method": "bacs",
+            "payment_method_title": "Direct Bank Transfer",
+            "set_paid": true,
+            "billing": {
+              "first_name": "John",
+              "last_name": "Doe",
+              "address_1": "969 Market",
+              "address_2": "",
+              "city": "San Francisco",
+              "state": "CA",
+              "postcode": "94103",
+              "country": "US",
+              "email": "viktorneasanta@gmail.com",
+              "phone": "(555) 555-5555"
+            },
+            "shipping": {
+              "first_name": "John",
+              "last_name": "Doe",
+              "address_1": "969 Market",
+              "address_2": "",
+              "city": "San Francisco",
+              "state": "CA",
+              "postcode": "94103",
+              "country": "US"
+            },
+            "line_items": [
+              {
+                "product_id": 3017,
+                "quantity": 2
+              },
+              {
+                "product_id": 3-15,
+                "variation_id": 23,
+                "quantity": 1
+              }
+            ],
+            "shipping_lines": [
+              {
+                "method_id": "flat_rate",
+                "method_title": "Flat Rate",
+                "total": "10.00"
+              }
+            ]
+          }`
+        )
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
 
 }
