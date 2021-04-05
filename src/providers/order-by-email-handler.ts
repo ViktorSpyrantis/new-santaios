@@ -141,64 +141,155 @@ export class OrderByEmailHandler {
   }
 
   getPaymentGateways() {
+    let createOrderData = {
+      payment_method: "cod",
+      payment_method_title: "Cash on delivery",
+      set_paid: false,
+      billing: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        city: "San Francisco",
+        postcode: "57000",
+        email: "viktorneasanta@gmail.com",
+        phone: "(555) 555-5555",
+        nomos: "Κιλκίς",
+        perioxi: "Νέα Σάντα",
+        orofos_: "Ισόγειο"
+      },
+      shipping: null,
+      line_items: [
+        {
+          product_id: 3017,
+          quantity: 3
+        }
+      ],
+      shipping_lines: [
+        {
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
+          total: "0"
+        }
+      ],
+      meta_data: [
+        {
+          id: 12524,
+          key: "nomos",
+          value: "Θεσσαλονίκης"
+        },
+        {
+          id: 12525,
+          key: "perioxi",
+          value: "Νέα Σάντα"
+        },
+        {
+          id: 12526,
+          key: "orofos_",
+          value: "Ισόγειο"
+        }
+      ]
+    }
+
+    let createOrderData2 = {
+      "payment_method": "cod",
+      "payment_method_title": "Cash on delivery",
+      "set_paid": true,
+      "billing": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "57000",
+        "country": "PK",
+        "email": "viktorneasanta@gmail.com",
+        "phone": "(555) 555-5555",
+        "nomos": "Κιλκίς",
+        "perioxi": "Νέα Σάντα",
+        "orofos_": "Ισόγειο"
+      },
+      "shipping": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "57000",
+        "country": "Pk",
+        "nomos": "Κιλκίς",
+        "perioxi": "Νέα Σάντα",
+        "orofos_": "Ισόγειο"
+      },
+      "line_items": [
+        {
+          "product_id": 3017,
+          "quantity": 2
+        }
+      ]
+    }
+
+
     return new Promise(resolve => {
-      // this.http.get(
-      //   `${this.url}/wp-json/wc/v3/payment_gateways?consumer_key=${
-      //     this.consumerKey
-      //   }&consumer_secret=${this.consumerSecret}`
-      // ).subscribe(data => {
-      //   resolve(data);
-      // })
+      this.http.get(
+        `${this.url}/wp-json/wc/v3/orders/3111?per_page=100&page=1&consumer_key=${
+          this.consumerKey
+        }&consumer_secret=${this.consumerSecret}`
+      ).subscribe(data => {
+        resolve(data);
+      })
       this.http
         .post(
           `${this.url}/wp-json/wc/v3/orders?consumer_key=${
             this.consumerKey
           }&consumer_secret=${this.consumerSecret}`,
-          `{
-            "payment_method": "bacs",
-            "payment_method_title": "Direct Bank Transfer",
-            "set_paid": true,
-            "billing": {
-              "first_name": "John",
-              "last_name": "Doe",
-              "address_1": "969 Market",
-              "address_2": "",
-              "city": "San Francisco",
-              "state": "CA",
-              "postcode": "94103",
-              "country": "US",
-              "email": "viktorneasanta@gmail.com",
-              "phone": "(555) 555-5555"
-            },
-            "shipping": {
-              "first_name": "John",
-              "last_name": "Doe",
-              "address_1": "969 Market",
-              "address_2": "",
-              "city": "San Francisco",
-              "state": "CA",
-              "postcode": "94103",
-              "country": "US"
-            },
-            "line_items": [
-              {
-                "product_id": 3017,
-                "quantity": 2
-              },
-              {
-                "product_id": 3-15,
-                "variation_id": 23,
-                "quantity": 1
-              }
-            ],
-            "shipping_lines": [
-              {
-                "method_id": "flat_rate",
-                "method_title": "Flat Rate",
-                "total": "10.00"
-              }
-            ]
-          }`
+          createOrderData
+          // `{
+          //   "payment_method": "bacs",
+          //   "payment_method_title": "Direct Bank Transfer",
+          //   "set_paid": true,
+          //   "billing": {
+          //     "first_name": "John",
+          //     "last_name": "Doe",
+          //     "address_1": "969 Market",
+          //     "address_2": "",
+          //     "city": "San Francisco",
+          //     "state": "CA",
+          //     "postcode": "94103",
+          //     "country": "US",
+          //     "email": "viktorneasanta@gmail.com",
+          //     "phone": "(555) 555-5555"
+          //   },
+          //   "shipping": {
+          //     "first_name": "John",
+          //     "last_name": "Doe",
+          //     "address_1": "969 Market",
+          //     "address_2": "",
+          //     "city": "San Francisco",
+          //     "state": "CA",
+          //     "postcode": "94103",
+          //     "country": "US"
+          //   },
+          //   "line_items": [
+          //     {
+          //       "product_id": 3017,
+          //       "quantity": 2
+          //     },
+          //     {
+          //       "product_id": 3-15,
+          //       "variation_id": 23,
+          //       "quantity": 1
+          //     }
+          //   ],
+          //   "shipping_lines": [
+          //     {
+          //       "method_id": "flat_rate",
+          //       "method_title": "Flat Rate",
+          //       "total": "10.00"
+          //     }
+          //   ]
+          // }`
         )
         .subscribe(data => {
           resolve(data);
