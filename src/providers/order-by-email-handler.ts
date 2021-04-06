@@ -244,52 +244,49 @@ export class OrderByEmailHandler {
           `${this.url}/wp-json/wc/v3/orders?consumer_key=${
             this.consumerKey
           }&consumer_secret=${this.consumerSecret}`,
-          createOrderData
-          // `{
-          //   "payment_method": "bacs",
-          //   "payment_method_title": "Direct Bank Transfer",
-          //   "set_paid": true,
-          //   "billing": {
-          //     "first_name": "John",
-          //     "last_name": "Doe",
-          //     "address_1": "969 Market",
-          //     "address_2": "",
-          //     "city": "San Francisco",
-          //     "state": "CA",
-          //     "postcode": "94103",
-          //     "country": "US",
-          //     "email": "viktorneasanta@gmail.com",
-          //     "phone": "(555) 555-5555"
-          //   },
-          //   "shipping": {
-          //     "first_name": "John",
-          //     "last_name": "Doe",
-          //     "address_1": "969 Market",
-          //     "address_2": "",
-          //     "city": "San Francisco",
-          //     "state": "CA",
-          //     "postcode": "94103",
-          //     "country": "US"
-          //   },
-          //   "line_items": [
-          //     {
-          //       "product_id": 3017,
-          //       "quantity": 2
-          //     },
-          //     {
-          //       "product_id": 3-15,
-          //       "variation_id": 23,
-          //       "quantity": 1
-          //     }
-          //   ],
-          //   "shipping_lines": [
-          //     {
-          //       "method_id": "flat_rate",
-          //       "method_title": "Flat Rate",
-          //       "total": "10.00"
-          //     }
-          //   ]
-          // }`
+          `{
+            "payment_method": "bacs",
+            "payment_method_title": "Direct Bank Transfer",
+            "set_paid": true,
+            "billing": {
+              "first_name": "John",
+              "last_name": "Doe",
+              "address_1": "969 Market",
+              "address_2": "",
+              "city": "San Francisco",
+              "state": "CA",
+              "postcode": "94103",
+              "country": "US",
+              "email": "viktorneasanta@gmail.com",
+              "phone": "(555) 555-5555",
+              "nomos": "Θεσσαλονίκης",
+              "perioxi": "Νέα Σάντα",
+              "orofos_": "3"
+            },
+            "shipping": {
+              "first_name": "John",
+              "last_name": "Doe",
+              "address_1": "969 Market",
+              "address_2": "",
+              "city": "San Francisco",
+              "state": "CA",
+              "postcode": "94103",
+              "country": "US"
+            },
+            "line_items": [
+              {
+                "product_id": 3017,
+                "quantity": 2
+              }
+            ],
+            "shipping_lines": [
+              {
+                "method_id": "flat_rate",
+                "method_title": "Flat Rate",
+                "total": "10.00"
+              }
+            ]
+          }`
         )
         .subscribe(data => {
           resolve(data);
