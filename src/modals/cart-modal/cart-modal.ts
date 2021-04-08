@@ -42,7 +42,6 @@ export class CartModal {
 
   openProductPage(product) {
     this.dismiss();
-    console.log(product)
     let navigationExtras: NavigationExtras = {
       queryParams: {
         product: JSON.stringify(product)

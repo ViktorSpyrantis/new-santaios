@@ -6,10 +6,10 @@
     <h3 class="title">{{pageTitle}}</h3>
   </div>
 
-  <ion-grid class="prod-container">
+  <ion-grid class="prod-container" *ngIf="products.length > 0">
     <ion-row class="prod-row">
       <ion-col class="prod-col" size="4" *ngFor="let prod of products">
-        <product-card [small]="true" [product]="prod.product">
+        <product-card [small]="true" [product]="prod">
         </product-card>
       </ion-col>
     </ion-row>

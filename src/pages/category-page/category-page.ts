@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GoogleDriveHandler } from 'src/providers/googleDriveHandler';
+import { ProductsHandler } from 'src/providers/products-handler';
 
 @Component({
   selector: 'category-page',
@@ -19,13 +20,18 @@ export class CategoryPage {
 
   constructor(
     private route: ActivatedRoute, 
+    private productsHandler: ProductsHandler,
     private driveHandler: GoogleDriveHandler
   ) {
     this.route.queryParams.subscribe(params => {
       if (params) {
-        this.sheetNumber = params.sheet;
+        // FIXME : OLD CODE USING GOOGLE SHEETS, DELETE
+        // this.sheetNumber = params.sheet;
+        // this.products = this.driveHandler.getProducts(this.sheetNumber);
+
         this.pageTitle = params.title;
-        this.products = this.driveHandler.getProducts(this.sheetNumber);
+        this.products = this.productsHandler.getProductsByCategory(params.slug);
+
         console.log("PRODUCTS RETURNED: ", this.products);
       }
     });

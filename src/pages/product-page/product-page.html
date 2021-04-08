@@ -16,7 +16,7 @@
     </div> -->
 
     <div class="img-container">
-      <img class="product-img" src="{{product.image}}">
+      <img class="product-img" src="{{product.images[0].src}}">
     </div>
 
     <h1 class="product-title">{{product.name}}</h1>
@@ -26,7 +26,7 @@
       <div class="value-container">
         <!-- FIXME : Remove this shit -->
         <!-- <p class="info-line"><span class="info">Χολυστερόλη</span><span class="value">{{product.price}}</span></p> -->
-        <p class="info" innerHTML="{{product.info}}"></p>
+        <p class="info" innerHTML="{{product.short_description}}"></p>
       </div>
     </div>
 
@@ -34,7 +34,7 @@
       <div class="amount-selector">
 
         <!-- Used if we use price per piece too -->
-        <p class="sign" (click)="priceBasedOnWeight ? (kilos > 0 ? kilos = kilos - 0.5 : null) : (pieces > 0 ? pieces = pieces - 1 : null)">-</p>
+        <p class="sign" (click)="priceBasedOnWeight ? (kilos > 0.5 ? kilos = kilos - 0.5 : null) : (pieces > 0 ? pieces = pieces - 1 : null)">-</p>
         <p class="amount" *ngIf="priceBasedOnWeight">{{('' + kilos).replace('.', ',')}}<span> {{kilos == 1 || kilos == 1.5 ? 'κιλό' : 'κιλά'}}</span></p>
         <p class="amount" *ngIf="!priceBasedOnWeight">{{pieces == 1 ? 'τεμάχιο' : 'τεμάχιο'}}</p>
         <p class="sign" (click)="priceBasedOnWeight ? (30 > kilos ? kilos = kilos + 0.5 : null) : (40 > pieces ? pieces = pieces + 1 : null)">+</p>

@@ -3,6 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { GoogleDriveHandler, Files } from 'src/providers/googleDriveHandler';
 import { ProductCategories } from 'src/providers/product-categories';
 import { ProductCategoriesEnum } from 'src/providers/product-categories-enum';
+import { ProductsHandler } from 'src/providers/products-handler';
 import { ProductSheet } from 'src/providers/productSheets'
 
 @Component({
@@ -35,9 +36,10 @@ export class Dashboard {
 
   constructor(
     private router: Router,
+    private productsHandler: ProductsHandler,
     private driveHandler: GoogleDriveHandler,
   ) {
-
+    this.productsHandler.retrieveProducts();
   }
 
   ngOnInit() {

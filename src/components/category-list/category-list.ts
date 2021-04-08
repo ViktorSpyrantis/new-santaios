@@ -20,10 +20,11 @@ export class CategoryList {
 
 
 
-  openCategory(id: string, title: string) {
+  openCategory(slug: string, title: string) {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        sheet: id,
+        // sheet: id,     FIXME : DELETE THIS LATER
+        slug: slug,
         title: title
       }
     };

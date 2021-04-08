@@ -20,14 +20,15 @@ export class ProductCard {
   // @Input() name: string;
   // @Input() image: string;
   // @Input() price: string;
-  @Input() product: {
-    image: string,
-    info: string,
-    name: string,
-    price: string,
-    weight: number,
-    quantity: number
-  };
+  @Input() product: any; 
+  // {
+  //   image: string,
+  //   info: string,
+  //   name: string,
+  //   price: string,
+  //   weight: number,
+  //   quantity: number
+  // };
 
   day: string;
   dayIndexMap = new Map([
@@ -44,13 +45,10 @@ export class ProductCard {
     private router: Router,
   ) { }
 
-  ngOnInit() {
-    if (this.product && parseFloat(this.product.price) < 0) {
-      this.shownPrice = ((parseFloat(this.product.price.replace(',', '.')) * -1) + ' €').replace('.', ',');
-      this.priceBasedOnWeight = false;
-    } else { 
-      this.shownPrice = this.product.price + ' €';
-      this.priceBasedOnWeight = true;
+  ngOnInit() { 
+    console.log(this.product)
+    if (this.product) {
+      this.shownPrice = (parseFloat(this.product.price.replace(',', '.')) + ' €').replace('.', ',');
     }
   }
 

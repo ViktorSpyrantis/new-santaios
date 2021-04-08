@@ -33,6 +33,8 @@ import { ModalHandler } from 'src/providers/modal-handler';
 import { environment } from '../environments/environment';
 // import { AngularFirestore } from '@angular/fire/firestore';
 import { CommunicationPage } from 'src/pages/communication/communication';
+import { ProductsHandler } from 'src/providers/products-handler';
+import { CreateOrder } from 'src/providers/create-order';
 
 
 @NgModule({
@@ -80,6 +82,8 @@ import { CommunicationPage } from 'src/pages/communication/communication';
     OrderByEmailHandler,
     EmailComposer,
     ModalHandler,
+    ProductsHandler,
+    CreateOrder
     // AngularFirestore
   ],
   bootstrap: [AppComponent]

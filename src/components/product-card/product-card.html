@@ -1,4 +1,5 @@
-<div id="main-product-card" [ngClass]="{'main-product-card-big' : !small, 'main-product-card-small' : small}">
+<div id="main-product-card" 
+  [ngClass]="{'main-product-card-big' : !small, 'main-product-card-small' : small}">
   <p class="day">{{dayIndexMap.get(dayIndex)}}</p>
   <div class="card-container" (click)="openProduct()">
     <div class="text-area">
@@ -7,7 +8,7 @@
     </div>
   
     <div class="image-container">
-      <img class="image" src="{{product.image}}">
+      <img class="image" src="{{product.images[0].src}}">
       <!-- <img class="like-icon" src="{{likeIcon}}"> -->
     </div> 
   </div>

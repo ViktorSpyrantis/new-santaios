@@ -28,7 +28,6 @@ export class CartHandler {
   }
 
   public getNumOfProducts() {
-    console.log("PRODUCTS IN CART: ", this.productList.length)
     return this.productList.length;
   }
 

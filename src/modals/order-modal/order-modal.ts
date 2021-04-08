@@ -137,14 +137,13 @@ export class OrderModal {
   }
 
   requiredFieldsNotFilled(): boolean {
-    // if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
-    //   this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
-    //   && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
-    //   return false;
-    // else {
-    //   return true;
-    // }
-    return false;
+    if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
+      this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
+      && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
+      return false;
+    else {
+      return true;
+    }
   }
 
   getAreas() {
@@ -170,7 +169,7 @@ export class OrderModal {
     // this.emailOrder.sendOrderEmail(this.customerInfo, this.configProductsString());
     // this.emailOrder.sendEmailTest();
     this.emailOrder.getPaymentGateways().then(data => {
-      console.log("$$$  ", data)
+      console.log(data)
     }
 
     )
