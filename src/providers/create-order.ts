@@ -17,7 +17,27 @@ export class CreateOrder {
     private http: HttpClient
   ) { }
 
-  public handleOrder(products: [], userInfo: any) {
+  public handleOrder(
+    products: {
+      product_id: number,
+      quantity: number
+    }[], 
+    userInfo: {
+      name: string,
+      surname: string,
+      phone: string,
+      area: string,
+      regUnit: string,
+      zip: string,
+      address: string,
+      floor: string,
+      email: string,
+      extraInfo: string
+    }
+  ) {
+
+    console.log("####  ", userInfo)
+    if (!userInfo.address) userInfo.address = '';
 
     let orderData = {
       payment_method: "cod",
@@ -29,9 +49,9 @@ export class CreateOrder {
         last_name: userInfo.surname,
         address_1: userInfo.address,
         city: "",
-        postcode: userInfo.zip,
+        postcode: userInfo.zip + '',
         email: userInfo.email,
-        phone: userInfo.phone
+        phone: userInfo.phone + ''
       },
       shipping: null,
       line_items: products,
@@ -57,5 +77,18 @@ export class CreateOrder {
         }
       ]
     }
+
+    return new Promise(resolve => {
+      this.http
+        .post(
+          `${this.url}/wp-json/wc/v3/orders?consumer_key=${
+            this.consumerKey
+          }&consumer_secret=${this.consumerSecret}`,
+          orderData
+        )
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
   }
 }

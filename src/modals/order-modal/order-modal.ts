@@ -6,6 +6,7 @@ import { ModalHandler } from 'src/providers/modal-handler';
 import { OrderByEmailHandler } from 'src/providers/order-by-email-handler';
 import { UNITS } from 'src/providers/regional-units';
 import { AREAS } from 'src/providers/areas';
+import { CreateOrder } from 'src/providers/create-order';
 
 @Component({
   selector: 'order-modal',
@@ -71,7 +72,8 @@ export class OrderModal {
     private emailOrder: OrderByEmailHandler,
     private alertController: AlertController,
     private cart: CartHandler,
-    private modalHandler: ModalHandler
+    private modalHandler: ModalHandler,
+    private order: CreateOrder
   ) {
     this.regionalUnits = UNITS;
   }
@@ -137,13 +139,15 @@ export class OrderModal {
   }
 
   requiredFieldsNotFilled(): boolean {
-    if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
-      this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
-      && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
-      return false;
-    else {
-      return true;
-    }
+    // if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
+    //   this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
+    //   && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
+    //   return false;
+    // else {
+    //   return true;
+    // }
+
+    return false;
   }
 
   getAreas() {
@@ -166,13 +170,17 @@ export class OrderModal {
 
   // FIXME : handle all functionality on a page rather than on modal maybe
   proceedWithOrder() {
-    // this.emailOrder.sendOrderEmail(this.customerInfo, this.configProductsString());
-    // this.emailOrder.sendEmailTest();
-    this.emailOrder.getPaymentGateways().then(data => {
-      console.log(data)
-    }
+    let products: { product_id: number, quantity: number}[] = [];
+    this.cart.getProductsInCart().forEach(prod => {
+      products.push({
+        product_id: prod.id,
+        quantity: prod.weight
+      })
+    })
+    console.log("####  ", this.customerInfo)
 
-    )
+    this.order.handleOrder(products, this.customerInfo);
+    console.log(this.cart.getProductsInCart());
     this.dismiss();
     this.cart.deleteProducts();
   }

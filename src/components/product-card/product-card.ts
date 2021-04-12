@@ -8,7 +8,6 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class ProductCard {
 
-  likeIcon: string = "assets/icon/heart.svg";
   weightText: string = "το κιλό";
   pieceText: string = "το τεμάχιο";
   shownPrice: string;

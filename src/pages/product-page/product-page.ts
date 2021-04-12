@@ -10,14 +10,15 @@ import { CartHandler } from 'src/providers/cart-handler';
 export class ProductPage {
   /* commented code here exists for if price is only based on weight */
 
-  product: {
-    image: string,
-    info: string,
-    name: string,
-    price: string,
-    weight: number,
-    quantity: number
-  };
+  product: any;
+  // {
+  //   image: string,
+  //   info: string,
+  //   name: string,
+  //   price: string,
+  //   weight: number,
+  //   quantity: number
+  // };
 
   priceBasedOnWeight: boolean;
   kilos: number =  0.5;
