@@ -87,21 +87,22 @@
           font-weight: 400;
           color: rgb(109, 108, 108);
         }
-        .info-line {
-          margin-top: 0.8vw;
-          margin-bottom: 0.8vw;
-          .info {
-            font-size: 3.7vw;
-            font-weight: 400;
-            color: rgb(109, 108, 108);
-          }
-          .value {
-            float: right;
-            font-size: 3.7vw;
-            font-weight: 500;
-            color: rgb(70, 206, 29);
-          }
-        }
+        // FIXME : check if useless all that
+        // .info-line {
+        //   margin-top: 0.8vw;
+        //   margin-bottom: 0.8vw;
+        //   .info {
+        //     font-size: 3.7vw;
+        //     font-weight: 400;
+        //     color: rgb(109, 108, 108);
+        //   }
+        //   .value {
+        //     float: right;
+        //     font-size: 3.7vw;
+        //     font-weight: 500;
+        //     color: rgb(70, 206, 29);
+        //   }
+        // }
       }
     }
 

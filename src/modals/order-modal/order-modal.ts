@@ -177,7 +177,6 @@ export class OrderModal {
         quantity: prod.weight
       })
     })
-    console.log("####  ", this.customerInfo)
 
     this.order.handleOrder(products, this.customerInfo);
     console.log(this.cart.getProductsInCart());

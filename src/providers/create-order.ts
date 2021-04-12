@@ -35,9 +35,10 @@ export class CreateOrder {
       extraInfo: string
     }
   ) {
-
-    console.log("####  ", userInfo)
     if (!userInfo.address) userInfo.address = '';
+    products.forEach(prod => {
+      if (prod.quantity % 1 != 0) prod.quantity -= 0.5;
+    })
 
     let orderData = {
       payment_method: "cod",
