@@ -9,9 +9,8 @@ import { NavigationExtras, Router } from '@angular/router';
 export class ProductCard {
 
   weightText: string = "το κιλό";
-  pieceText: string = "το τεμάχιο";
-  shownPrice: string;
-  priceBasedOnWeight: boolean;
+  pieceText: string = "το τεμ.";
+  priceBasedOnWeight: boolean = true;
 
   @Input() small: boolean;
   @Input() dayIndex?: number;
@@ -46,9 +45,15 @@ export class ProductCard {
 
   ngOnInit() { 
     console.log(this.product)
-    if (this.product) {
-      this.shownPrice = (parseFloat(this.product.price.replace(',', '.')) + ' €').replace('.', ',');
-    }
+    // if (this.product) {
+      // this.shownPrice = (parseFloat(this.product.price.replace(',', '.')) + ' €').replace('.', ',');
+      for(let i = 0; i < this.product.categories.length; i++) {
+        if (this.product.categories[i].name == "Τεμάχια") {
+          this.priceBasedOnWeight = false;
+          return;
+        }
+      }
+    // }
   }
 
   openProduct() {

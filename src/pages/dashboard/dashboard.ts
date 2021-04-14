@@ -40,6 +40,7 @@ export class Dashboard {
     private driveHandler: GoogleDriveHandler,
   ) {
     this.productsHandler.retrieveProducts();
+    this.productsHandler.retrieveProductAttributes();
   }
 
   ngOnInit() {

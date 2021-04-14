@@ -2,39 +2,46 @@
 <ion-content padding id="product-page">
   <div class="content">
 
-    <!-- FIXME : REMOVE COMMENTED CODE -->
-    <!-- <div class="bg-img-container">
-      <img class="bg-img" src="{{bg_img}}">
-      <div class="content-inside-bg">
-        <img class="product-img" src="{{product.image}}">
-      </div>
-    </div> -->
-
-    <!-- <div class="product-img-container" style="background-image: url({{bg_img}});">
-      <h1 class="product-title">{{product.name}}</h1>
-      <img class="product-img" src="{{product.image}}">
-    </div> -->
-
+    <!-- PRODUCT IMAGE -->
+    <!-- FIXME : add zooming later -->
     <div class="img-container">
       <img class="product-img" src="{{product.images[0].src}}">
     </div>
 
-    <h1 class="product-title">{{product.name}}</h1>
+    <!-- PRODUCT NAME -->
+    <h1 class="product-name">{{product.name}}</h1>
 
+    <!-- PRODUCT INFO -->
     <div class="info-table" *ngIf="product.info != '-'">
       <h3 class="title">Πληροφορίες</h3>
       <div class="value-container">
-        <p class="info" innerHTML="{{product.short_description}}"></p>
+        <p class="info" innerHTML="{{product.description}}"></p>
       </div>
     </div>
 
+    <!-- PURCHASE AREA -->
     <div class="purchase-area">
-      <div class="amount-selector">
 
+      <!-- attribute selection of the product if existing -->
+      <div *ngIf="attributes.length > 0" class="product-attribute">
+        <div *ngFor="let attr of attributes; let i = index">
+          <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding input-wrapper" 
+            (ionChange)="selectAttribute($event, i)">
+            <ion-label class="label" position="floating" [innerHTML]="attr.name"></ion-label>
+            <ion-select class="input" [(ngModel)]="attributeSelections" >
+              <ion-select-option *ngFor="let option of attr.options" [value]="option">
+                {{option}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- select amount of product in kilos or per piece -->
+      <div class="amount-selector">
         <!-- Used if we use price per piece too -->
         <p class="sign" (click)="priceBasedOnWeight ? (kilos > 0.5 ? kilos = kilos - 0.5 : null) : (pieces > 0 ? pieces = pieces - 1 : null)">-</p>
         <p class="amount" *ngIf="priceBasedOnWeight">{{('' + kilos).replace('.', ',')}}<span> {{kilos == 1 || kilos == 1.5 ? 'κιλό' : 'κιλά'}}</span></p>
-        <p class="amount" *ngIf="!priceBasedOnWeight">{{pieces == 1 ? 'τεμάχιο' : 'τεμάχιο'}}</p>
+        <p class="amount" *ngIf="!priceBasedOnWeight">{{pieces}} <span>{{pieces == 1 ? 'τεμάχιο' : 'τεμάχια'}}</span></p>
         <p class="sign" (click)="priceBasedOnWeight ? (30 > kilos ? kilos = kilos + 0.5 : null) : (40 > pieces ? pieces = pieces + 1 : null)">+</p>
 
         <!-- Use if price is only based on weight -->
@@ -42,9 +49,12 @@
         <p class="amount">{{('' + kilos).replace('.', ',')}}<span> {{kilos == 1 || kilos == 1.5 ? 'κιλό' : 'κιλά'}}</span></p>
         <p class="sign" (click)="30 > kilos ? kilos = kilos + 0.5 : null">+</p> -->
       </div>
+
+      <!-- price based on amount selection -->
       <p class="price" >{{(calculatePrice() | number : '1.2-2').replace('.', ',')}} €</p>
 
-      <cta-button [icon]="cartIcon" [label]="buttonLabel" [disabled]="false" (onClick)="addToCart()">
+      <!-- confirmation button -->
+      <cta-button [icon]="cartIcon" [label]="buttonLabel" [disabled]="checkIfAttributesAreSelected()" (onClick)="addToCart()">
       </cta-button>
     </div>
   </div>

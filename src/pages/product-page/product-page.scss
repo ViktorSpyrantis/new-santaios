@@ -13,54 +13,12 @@
       }
     }
 
-    // FIXME : REMOVE COMMENTED CODE
-    // .bg-img-container {
-    //   width: 100%;
-    //   .bg-img {
-    //     width: 100%;
-    //     position: relative;
-    //   }
-    //   .content-inside-bg {
-    //     position: absolute;
-    //     top: 0;
-    //     width: 100%;
-    //     text-align: center;
-    //     .product-img {
-    //       width: 40vw;
-    //       // border-radius: 0 0 40vw 40vw;
-    //     }
-    //   }
-    // }
-
-    .product-title {
+    .product-name {
       text-align: center;
       font-size: 6.2vw;
       font-weight: 500;
       color: rgb(151, 146, 146);
-      // margin-top: 5vw;
-      // margin-bottom: 5vw;
     }
-
-    // .product-img-container {
-    //   text-align: center;
-    //   width: 100vw;
-    //   position: relative;
-    //   bottom: 7vw;
-    //   // background-position: center;
-    //   // background-repeat: no-repeat;
-    //   // background-size: cover;
-    //   .product-title {
-    //     font-size: 6.2vw;
-    //     font-weight: 500;
-    //     color: rgb(151, 146, 146);
-    //     margin-top: 5vw;
-    //     padding-top: 4vw;
-    //   }
-    //   .product-img {
-    //     height: 25vw;
-    //     // margin-bottom: 10vw;
-    //   }
-    // }
 
     .info-table  {
       background-color: white;
@@ -111,6 +69,22 @@
       text-align: center;
       margin-top: 7vw;
       padding-bottom: 7vw;
+
+      .product-attribute {
+        margin-top: 5vw;
+        margin-bottom: 10vw;
+        .input-wrapper {
+          width: 70vw;
+          margin-left: auto;
+          margin-right: auto;
+          .label {
+            font-size: 4.2vw;
+            font-weight: 700;
+            color: #9f9f9f;
+          }
+        }
+      }
+
       .sign {
         margin: 0 5vw 0 5vw;
         width: 12vw;

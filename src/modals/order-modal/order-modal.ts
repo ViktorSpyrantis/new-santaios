@@ -139,15 +139,13 @@ export class OrderModal {
   }
 
   requiredFieldsNotFilled(): boolean {
-    // if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
-    //   this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
-    //   && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
-    //   return false;
-    // else {
-    //   return true;
-    // }
-
-    return false;
+    if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
+      this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
+      && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
+      return false;
+    else {
+      return true;
+    }
   }
 
   getAreas() {
@@ -170,10 +168,11 @@ export class OrderModal {
 
   // FIXME : handle all functionality on a page rather than on modal maybe
   proceedWithOrder() {
-    let products: { product_id: number, quantity: number}[] = [];
+    let products: { product_id: number, name: string, quantity: number}[] = [];
     this.cart.getProductsInCart().forEach(prod => {
       products.push({
         product_id: prod.id,
+        name: prod.name,
         quantity: prod.weight
       })
     })
