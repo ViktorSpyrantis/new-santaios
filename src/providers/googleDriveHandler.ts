@@ -9,11 +9,12 @@ export class GoogleDriveHandler {
 
   constructor(public http: HttpClient) { }
 
+  // this fn is not used currently
   public getProducts(sheet: number) {
     const url = `https://spreadsheets.google.com/feeds/cells/1iPS-nAjwo8tmOk6kyBGxbctByRCoCI7FISqZxkQufFk/${sheet}/public/full?alt=json`;
     let products = [];
     this.http.get(url).subscribe(data => {
-      let _data: any = data;
+      let _data: any = data;      // we use this because of error
       for(let i=0; i<(_data.feed.entry.length)/4; i++) {
         products.push(
           {
@@ -31,24 +32,18 @@ export class GoogleDriveHandler {
     return products;
   }
   
-  public getProductCardInfo(file: Files): any {
+  public getProductsFromSheet(file: Files, allProducts?: any[]): any {
     let products = [];
     this.http.get(file).subscribe(data => {
-      let _data: any = data;
-      for(let i=0; i<(_data.feed.entry.length)/4; i++) {
-        products.push(
-          {
-            product: {
-              name: _data.feed.entry[(i*4) + 0].content.$t,
-              price: _data.feed.entry[(i*4) + 1].content.$t,
-              image: _data.feed.entry[(i*4) + 2].content.$t,
-              info: _data.feed.entry[(i*4) + 3].content.$t,
-              weight: null,       // FIXME : add logics here
-              quantity: null
-            }
-          }
-        )
+      let _data: any = data;      // we use this because of error
+      let productIds = [];
+      for(let i=0; i<(_data.feed.entry.length); i++) {
+        productIds.push(+_data.feed.entry[(i)].content.$t)
       }
+
+      allProducts.forEach(prod => {
+        if (productIds.includes(prod.id)) products.push(prod)
+      })
     })
     return products;
   }

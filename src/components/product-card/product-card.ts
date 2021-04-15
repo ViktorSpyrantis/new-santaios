@@ -44,15 +44,14 @@ export class ProductCard {
   ) { }
 
   ngOnInit() { 
-    console.log(this.product)
     // if (this.product) {
       // this.shownPrice = (parseFloat(this.product.price.replace(',', '.')) + ' €').replace('.', ',');
-      for(let i = 0; i < this.product.categories.length; i++) {
-        if (this.product.categories[i].name == "Τεμάχια") {
-          this.priceBasedOnWeight = false;
-          return;
-        }
+    for(let i = 0; i < this.product.categories.length; i++) {
+      if (this.product.categories[i].name == "Τεμάχια") {
+        this.priceBasedOnWeight = false;
+        return;
       }
+    }
     // }
   }
 

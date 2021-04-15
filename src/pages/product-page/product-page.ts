@@ -22,7 +22,7 @@ export class ProductPage {
   priceBasedOnWeight: boolean = true;
   kilos: number =  0.5;
   pieces: number = 1;
-  attributeSelections: string[] = [];
+  attributeSelections: any[] = [];
   attributes: {
     name: string,
     options: string[]
@@ -58,7 +58,6 @@ export class ProductPage {
     // init values because their state will remain even after selecting another product
     this.kilos =  0.5;
     this.pieces = 1;
-    this.attributeSelections = [];
     this.attributes = [];
 
     // add product attributes if they exist
@@ -67,6 +66,7 @@ export class ProductPage {
         name: this.productsHandler.getAttributeName(attr.id),
         options: attr.options
       })
+      // this.attributeSelections.push(null)
     });
   }
 
@@ -75,9 +75,9 @@ export class ProductPage {
   }
 
   async addToCart() {
-    let attributeText = '';
+    let attributeText = ' - ';
     this.attributeSelections.forEach(selection => {attributeText += selection})
-    this.product.name = attributeText;
+    this.product.name += attributeText;
     console.log("PROD ", this.product.name);
 
     this.priceBasedOnWeight ? this.product.weight = this.kilos : this.product.quantity = this.pieces;
@@ -87,6 +87,7 @@ export class ProductPage {
 
   selectAttribute(event, index) {
     this.attributeSelections[index] = event.detail.value;
+    console.log(this.attributeSelections)
   }
 
   checkIfAttributesAreSelected(): boolean {

@@ -1,125 +1,123 @@
-// #main-product-card {
-  .main-product-card-big {
-    margin-right: 2vw;
-    margin-left: 2vw;
+.main-product-card-big {
+  margin-right: 2vw;
+  margin-left: 2vw;
+  width: 34vw;
+  .day {
+    text-align: center;
+    color: rgb(221, 113, 24);
+    font-size: 3.5vw;
+    font-weight: 400;
+  }
+
+  .card-container {
+    height: 37vw;
     width: 34vw;
-    .day {
-      text-align: center;
-      color: rgb(221, 113, 24);
-      font-size: 3.5vw;
-      font-weight: 400;
+    background-color: white;
+    border-radius: 4vw;
+    box-shadow: 0vw 1.3vw 2.6vw 0vw rgb(0, 0, 0, 0.5);
+    
+    .text-area {
+      height: 20%;
+      .weight {
+        display: inline-block;
+        margin-left: 2vw;
+        margin-bottom: 0;
+        color: grey;
+        font-size: 3.2vw;
+        font-weight: 300;
+      }
+      .price {
+        float: right;
+        position: relative;
+        bottom: 1vw;
+        margin-right: 2vw;
+        margin-bottom: 0;
+        color: rgb(17, 190, 46);
+        font-size: 3.8vw;
+        font-weight: 400;
+      }
     }
-
-    .card-container {
-      height: 37vw;
+  
+    .image-container {
+      height: 80%;
       width: 34vw;
-      background-color: white;
-      border-radius: 4vw;
-      box-shadow: 0vw 1.3vw 2.6vw 0vw rgb(0, 0, 0, 0.5);
-      
-      .text-area {
-        height: 20%;
-        .weight {
-          display: inline-block;
-          margin-left: 2vw;
-          margin-bottom: 0;
-          color: grey;
-          font-size: 3.2vw;
-          font-weight: 300;
-        }
-        .price {
-          float: right;
-          position: relative;
-          bottom: 1vw;
-          margin-right: 2vw;
-          margin-bottom: 0;
-          color: rgb(17, 190, 46);
-          font-size: 3.8vw;
-          font-weight: 400;
-        }
+      display: flex;
+      .image {
+        width: 28vw;
+        margin: auto;
+        border-radius: 0.8vw;
       }
-    
-      .image-container {
-        height: 80%;
-        width: 34vw;
-        display: flex;
-        .image {
-          width: 22vw;
-          margin: auto;
-          border-radius: 0.8vw;
-        }
-        .like-icon {
-          width: 5vw;
-          float: right;
-          margin-right: 2vw;
-        }
+      .like-icon {
+        width: 5vw;
+        float: right;
+        margin-right: 2vw;
       }
-    }
-
-    .name {
-      color: grey;
-      font-size: 3.5vw;
-      font-weight: 400;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
   }
 
+  .name {
+    color: grey;
+    font-size: 3.5vw;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 
 
-  .main-product-card-small {
-    margin-right: 2vw;
-    margin-left: 2vw;
-    margin-bottom: 11vw;
+
+.main-product-card-small {
+  margin-right: 2vw;
+  margin-left: 2vw;
+  margin-bottom: 11vw;
+  width: 26vw;
+  .card-container {
+    height: 29vw;
     width: 26vw;
-    .card-container {
-      height: 29vw;
-      width: 26vw;
-      background-color: white;
-      border-radius: 3.5vw;
-      box-shadow: 0vw 1.3vw 2.6vw 0vw rgb(0, 0, 0, 0.5);
-      
-      .text-area {
-        height: 20%;
-        .weight {
-          display: inline-block;
-          margin-bottom: 0;
-          color: grey;
-          font-size: 3.2vw;
-          font-weight: 300;
-        }
-        .price {
-          float: right;
-          margin-right: 1.8vw;
-          margin-bottom: 0;
-          color: rgb(17, 190, 46);
-          font-size: 3.2vw;
-          font-weight: 400;
-        }
-      }
+    background-color: white;
+    border-radius: 3.5vw;
+    box-shadow: 0vw 1.3vw 2.6vw 0vw rgb(0, 0, 0, 0.5);
     
-      .image-container {
-        height: 80%;
-        width: 26vw;
-        display: flex;
-        .image {
-          width: 21vw;
-          margin: auto;
-          border-radius: 0.8vw;
-        }
+    .text-area {
+      height: 20%;
+      .weight {
+        display: inline-block;
+        margin-bottom: 0;
+        color: grey;
+        font-size: 3.2vw;
+        font-weight: 300;
+      }
+      .price {
+        float: right;
+        margin-right: 1.8vw;
+        margin-bottom: 0;
+        color: rgb(17, 190, 46);
+        font-size: 3.2vw;
+        font-weight: 400;
       }
     }
-
-    .name {
-      color: grey;
-      font-size: 3vw;
-      font-weight: 400;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+  
+    .image-container {
+      height: 80%;
+      width: 26vw;
+      display: flex;
+      .image {
+        width: 21vw;
+        margin: auto;
+        border-radius: 0.8vw;
+      }
     }
   }
-// }
+
+  .name {
+    color: grey;
+    font-size: 3vw;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,11 +1,10 @@
-<!--  [ngStyle]="{'background-image': 'url(' + bgImage + ')'}" -->
+<custom-header></custom-header>
 <div id="dashboard">
-
-  <div class="logo-container">
+  <div class="logo-container" id="logo-container">
     <img class="logo-top" src="{{logoBg}}">
   </div>
 
-  <category-list></category-list>
+  <category-list *ngIf="loadingComplete"></category-list>
 
   <!-- FIXME : DELETE ALL THESE MAYBE -->
   <!-- <div *ngIf="loadingComplete" class="horizontal-scroll">
@@ -15,22 +14,22 @@
   </div> -->
 
   
-  <!-- <div class="card-container" *ngIf="loadingComplete && weeklyOffers" >
+  <div class="card-container" *ngIf="loadingComplete && weeklyOffers.length > 0" >
     <p class="cards-title">{{weeklyOffersTitle}}</p>
     <div class="horizontal-scroll">
-      <product-card *ngFor="let prod of weeklyOffers; let i = index" [small]="false" [product]="prod.product" [dayIndex]="i">
+      <product-card *ngFor="let prod of weeklyOffers; let i = index" [small]="false" [product]="prod" [dayIndex]="i">
       </product-card>
     </div>
   </div>
 
-  <div class="card-container" *ngIf="loadingComplete && suggestedProducts">
+  <div class="card-container" *ngIf="loadingComplete && suggestedProducts.length > 0">
     <p class="cards-title">{{suggestedProductsTitle}}</p>
     <div class="horizontal-scroll">
-      <product-card *ngFor="let prod of suggestedProducts" [small]="false" [product]="prod.product">
+      <product-card *ngFor="let prod of suggestedProducts" [small]="false" [product]="prod">
       </product-card>
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- FIREBASE STUFF -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->

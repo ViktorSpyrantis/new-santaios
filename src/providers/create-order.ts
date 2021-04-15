@@ -20,7 +20,7 @@ export class CreateOrder {
   public handleOrder(
     products: {
       product_id: number,
-      name: string,
+      variation_id?: number,
       quantity: number
     }[], 
     userInfo: {

@@ -31,8 +31,6 @@ export class CategoryPage {
 
         this.pageTitle = params.title;
         this.products = this.productsHandler.getProductsByCategory(params.slug);
-
-        console.log("PRODUCTS RETURNED: ", this.products);
       }
     });
   }

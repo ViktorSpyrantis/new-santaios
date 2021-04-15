@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { GoogleDriveHandler, Files } from 'src/providers/googleDriveHandler';
-import { ProductCategories } from 'src/providers/product-categories';
-import { ProductCategoriesEnum } from 'src/providers/product-categories-enum';
 import { ProductsHandler } from 'src/providers/products-handler';
-import { ProductSheet } from 'src/providers/productSheets'
 
 @Component({
   selector: 'dashboard',
@@ -39,17 +36,23 @@ export class Dashboard {
     private productsHandler: ProductsHandler,
     private driveHandler: GoogleDriveHandler,
   ) {
-    this.productsHandler.retrieveProducts();
+    this.productsHandler.retrieveProducts().then(allProducts => {
+      this.initLists(allProducts);
+      this.loadingComplete = true
+    });
     this.productsHandler.retrieveProductAttributes();
   }
 
-  ngOnInit() {
-    this.initLists();
-    console.log('SUGGESTED PRODUCTS: ', this.suggestedProducts)
-    setTimeout(() => {
-      this.loadingComplete = true;
-    }, 500);
-  }
+  // loading problems if we do not use code below
+  // ngOnInit() {
+  //   setTimeout(() => {
+  //     this.loadingComplete = true;
+  //   }, 500);
+  // }
+
+  // ionViewDidEnter() {
+  //   document.getElementById("logo-container").focus();
+  // }
 
   // FIXME : DELET MAYBE
   // openCategory(categoryName: string) {
@@ -61,9 +64,8 @@ export class Dashboard {
   //   this.router.navigate(['/category'], navigationExtras)
   // }
 
-  private initLists() {
-    this.suggestedProducts = this.driveHandler.getProductCardInfo(Files.SUGGESTED);
-    this.weeklyOffers = this.driveHandler.getProductCardInfo(Files.WEEK_OFFERS);
+  private initLists(products: []) {
+    this.suggestedProducts = this.driveHandler.getProductsFromSheet(Files.SUGGESTED, products);
+    this.weeklyOffers = this.driveHandler.getProductsFromSheet(Files.WEEK_OFFERS, products);
   }
-
 }

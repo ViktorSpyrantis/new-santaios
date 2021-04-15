@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductSheet } from './productSheets';
+import { resolve } from 'node:path';
 
 @Injectable()
 export class ProductsHandler {
@@ -13,6 +14,10 @@ export class ProductsHandler {
   private allProductAttributes: any = [];
 
   constructor(public http: HttpClient) { }
+
+  public getAllProducts() {
+    return this.allProducts;
+  }
 
   public getProductsByCategory(slug: string): any{
     let productList = [];
@@ -32,16 +37,20 @@ export class ProductsHandler {
     }
   }
 
-  public retrieveProducts() {
-    this.http.get(
-      `${this.url}/wp-json/wc/v3/products?per_page=100&page=1&consumer_key=${
-        this.consumerKey
-      }&consumer_secret=${this.consumerSecret}`
-    ).subscribe(products => {
-      this.allProducts = products;
-
-      console.log("ALL PRODUCTS : ", this.allProducts)
+  public retrieveProducts(): Promise<any> {
+    return new Promise(resolve => {
+      this.http.get(
+        `${this.url}/wp-json/wc/v3/products?per_page=100&page=1&consumer_key=${
+          this.consumerKey
+        }&consumer_secret=${this.consumerSecret}`
+      ).subscribe(products => {
+        this.allProducts = products;
+  
+        console.log("ALL PRODUCTS : ", this.allProducts);
+        resolve(this.allProducts);
+      })
     })
+    
   }
 
   public retrieveProductAttributes() {
@@ -65,4 +74,32 @@ export class ProductsHandler {
 
     console.log("ALL PRODUCT ATTRIBUTES : ", this.allProductAttributes)
   }
+
+  // FIXME : this fn should be temporary and be used until the wordpress attributes/variations are set properly
+  public getProductVariations(productId: number) {
+    this.http.get(
+      `${this.url}/wp-json/wc/v3/products/${productId}/variations?consumer_key=${
+        this.consumerKey
+      }&consumer_secret=${this.consumerSecret}`
+    ).subscribe(attrs => {
+      this.allProductAttributes = attrs;
+    })
+
+    return this.allProductAttributes;
+  }
+
+  public mapOptionNameToVariationId(option: string): number {
+    switch(option) {
+      case "Μερίδες":
+        return 3009;
+      case "Ολόκληρο κομμάτι":
+        return 3008;
+      case "Μερίδες":
+        return 3009;
+      case "Μερίδες":
+        return 3009;
+      default:
+        return null;
+    }
+  } 
 }
