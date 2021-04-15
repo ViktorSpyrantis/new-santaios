@@ -35,6 +35,7 @@ import { environment } from '../environments/environment';
 import { CommunicationPage } from 'src/pages/communication/communication';
 import { ProductsHandler } from 'src/providers/products-handler';
 import { CreateOrder } from 'src/providers/create-order';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { CreateOrder } from 'src/providers/create-order';
     // HttpHandler,
     HttpClientModule,
     FormsModule,
+    PinchZoomModule
     // AngularFireModule.initializeApp(environment.firebaseConfig),
     // AngularFireDatabaseModule
   ],
