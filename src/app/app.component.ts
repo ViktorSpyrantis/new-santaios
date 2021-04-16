@@ -18,8 +18,6 @@ export class AppComponent {
     private statusBar: StatusBar,
     private productsHandler: ProductsHandler
   ) {
-    // this.productsHandler.retrieveProducts();
-    // this.productsHandler.retrieveProductAttributes();
     this.initializeApp();
   }
 

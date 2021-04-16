@@ -6,7 +6,7 @@
     <!-- FIXME : add zooming later -->
     <div class="img-container">
       <pinch-zoom style="background-color: rgba(235, 236, 235, 0.945)">
-        <img class="product-img" src="{{product.images[0].src}}">
+        <img class="product-img" src="{{product.images[0].src.replace('scaled', '300x300')}}">
       </pinch-zoom>
     </div>
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductSheet } from './productSheets';
-import { resolve } from 'node:path';
+// import { resolve } from 'node:path';
 
 @Injectable()
 export class ProductsHandler {
@@ -12,8 +12,9 @@ export class ProductsHandler {
 
   private allProducts: any = [];
   private allProductAttributes: any = [];
+  private productsRetrieved: boolean = false;
 
-  constructor(public http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public getAllProducts() {
     return this.allProducts;
@@ -38,19 +39,24 @@ export class ProductsHandler {
   }
 
   public retrieveProducts(): Promise<any> {
-    return new Promise(resolve => {
-      this.http.get(
-        `${this.url}/wp-json/wc/v3/products?per_page=100&page=1&consumer_key=${
-          this.consumerKey
-        }&consumer_secret=${this.consumerSecret}`
-      ).subscribe(products => {
-        this.allProducts = products;
-  
-        console.log("ALL PRODUCTS : ", this.allProducts);
-        resolve(this.allProducts);
-      })
+    let that = this;
+    console.log(that.productsRetrieved)
+    return new Promise(function(resolve, reject){
+      if (!that.productsRetrieved) {
+        that.http.get(
+          `${that.url}/wp-json/wc/v3/products?per_page=100&page=1&consumer_key=${
+            that.consumerKey
+          }&consumer_secret=${that.consumerSecret}`
+        ).subscribe(products => {
+          that.allProducts = products;
+          that.productsRetrieved = true;
+          console.log("ALL PRODUCTS : ", that.allProducts);
+          resolve(that.allProducts);
+        })
+      } else {
+        reject()
+      }
     })
-    
   }
 
   public retrieveProductAttributes() {
@@ -101,5 +107,9 @@ export class ProductsHandler {
       default:
         return null;
     }
-  } 
+  }
+
+  public retrieveLists() {
+    
+  }
 }

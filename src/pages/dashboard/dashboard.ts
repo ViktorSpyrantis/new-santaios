@@ -12,22 +12,10 @@ export class Dashboard {
   loadingComplete: boolean = false;
 
   suggestedProductsTitle = "Προτεινόμενα  προϊόντα"
-  suggestedProducts: {
-    name: string,
-    price: string,
-    image: string,
-    info: string,
-    weight: number
-  }[];
+  suggestedProducts = [];
 
   weeklyOffersTitle = "Προσφορές εβδομάδος";
-  weeklyOffers: {
-    name: string,
-    price: string,
-    image: string,
-    info: string,
-    weight: number
-  }[];
+  weeklyOffers = [];
   bgImage: string = "assets/img/bg.png"
   logoBg: string = "assets/icon/logo_bg.svg"
 
@@ -38,7 +26,10 @@ export class Dashboard {
   ) {
     this.productsHandler.retrieveProducts().then(allProducts => {
       this.initLists(allProducts);
-      this.loadingComplete = true
+      this.loadingComplete = true;
+    }).catch(() => {
+      this.initLists(this.productsHandler.getAllProducts());
+      this.loadingComplete = true;
     });
     this.productsHandler.retrieveProductAttributes();
   }

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { CartHandler } from './cart-handler';
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Injectable()

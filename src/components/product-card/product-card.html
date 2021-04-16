@@ -9,7 +9,7 @@
     </div>
   
     <div class="image-container">
-      <img class="image" src="{{product?.images[0]?.src}}">
+      <img class="image" src="{{product?.images[0]?.src.replace('scaled', '150x150')}}"/>
     </div> 
   </div>
   <p class="name">{{product.name}}</p>
