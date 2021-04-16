@@ -16,7 +16,7 @@ export class CartModal {
   title: string = "ΚΑΛΑΘΙ";
   weightPriceText: string = "Τιμή κιλού: ";
   piecePriceText: string = "Τιμή τεμαχίου: ";
-  totalText: string = "ΣΥΝΟΛΟ:  ";
+  totalText: string = "ΣΥΝΟΛΟ: ";
   confirmButtonLabel: string = "Αγορά";
   exitButtonLabel: string = "Έξοδος";
   clearCartButtonLabel: string = "Άδειασμα καλ.";
