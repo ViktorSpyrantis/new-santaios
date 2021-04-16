@@ -11,7 +11,7 @@
   <div *ngIf="productsInCart.length > 0">
     <div class="product" *ngFor="let product of productsInCart; let i = index" (click)="openProductPage(product)">
       <div class="image-container">
-        <img class="image right-margin" src="{{product.images[0].src}}">
+        <img class="image right-margin" src="{{product.images[0].src.replace('scaled', '100x100')}}">
       </div>
 
       <div class="all-text">
