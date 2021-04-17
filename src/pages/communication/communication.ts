@@ -8,6 +8,8 @@ import { ContactFormService } from 'src/providers/contact-form-service';
 })
 export class CommunicationPage {
 
+  messageSentSuccesfully: boolean;
+
   info: {
     address: {
       iconName: string,
@@ -39,14 +41,14 @@ export class CommunicationPage {
   forms = {
     nameSurname: "Ονοματεπώνυμο",
     email: "Email",
-    phone: "Τηλέφωνο επικοινωνίας",
+    subject: "Θέμα",
     message: "Το μήνυμά σας"
   }
 
   message = {
     nameSurname: null,
     email: null,
-    phone: null,
+    subject: null,
     message: null
   }
 
@@ -64,6 +66,12 @@ export class CommunicationPage {
 
   sendMessage() {
     // FIXME : to be implemented 
-    this.contactForm.createContactForm(this.message)
+    this.contactForm.createContactForm(this.message).then(result => {
+      this.messageSentSuccesfully = true;
+    });
+    this.message.nameSurname = null;
+    this.message.email = null;
+    this.message.subject = null;
+    this.message.message = null;
   }
 }
