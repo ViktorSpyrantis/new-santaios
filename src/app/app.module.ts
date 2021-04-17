@@ -36,6 +36,7 @@ import { CommunicationPage } from 'src/pages/communication/communication';
 import { ProductsHandler } from 'src/providers/products-handler';
 import { CreateOrder } from 'src/providers/create-order';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
+import { ContactFormService } from 'src/providers/contact-form-service';
 
 
 @NgModule({
@@ -85,7 +86,8 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
     EmailComposer,
     ModalHandler,
     ProductsHandler,
-    CreateOrder
+    CreateOrder,
+    ContactFormService
     // AngularFirestore
   ],
   bootstrap: [AppComponent]

@@ -1,9 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
-import { CartHandler } from './cart-handler';
-// import * as $ from 'jquery';
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Injectable()
 export class CreateOrder {
@@ -13,7 +10,6 @@ export class CreateOrder {
   private consumerSecret = 'cs_e4e285d010e68fd87ad8a85c9f210b0e0e896caa';
 
   constructor(
-    private emailComposer: EmailComposer,
     private http: HttpClient
   ) { }
 
@@ -43,6 +39,7 @@ export class CreateOrder {
       payment_method_title: "Cash on delivery",
       set_paid: false,
       status: "processing",
+      customer_note: userInfo.extraInfo,
       billing: {
         first_name: userInfo.name,
         last_name: userInfo.surname,
@@ -86,6 +83,7 @@ export class CreateOrder {
           orderData
         )
         .subscribe(data => {
+          console.log("********   CREATE ORDER RESPONSE   ******** \n", data)
           resolve(data);
         });
     });

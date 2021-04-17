@@ -168,11 +168,17 @@ export class OrderModal {
 
   // FIXME : handle all functionality on a page rather than on modal maybe
   proceedWithOrder() {
-    let products: { product_id: number, name: string, quantity: number}[] = [];
+    let products: { product_id: number, variation_id?: number, quantity: number}[] = [];
     this.cart.getProductsInCart().forEach(prod => {
+      console.log(prod.variations.slice(-1)[0])
+      prod.variations[prod.variations.length - 1] ? 
       products.push({
         product_id: prod.id,
-        name: prod.name,
+        variation_id: prod.variations[prod.variations.length - 1],
+        quantity: prod.weight
+      }) : 
+      products.push({
+        product_id: prod.id,
         quantity: prod.weight
       })
     })

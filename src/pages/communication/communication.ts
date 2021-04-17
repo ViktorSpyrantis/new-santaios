@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ContactFormService } from 'src/providers/contact-form-service';
 
 @Component({
   selector: 'communication',
@@ -57,11 +58,12 @@ export class CommunicationPage {
   communicateWithUsText: string = "Επικοινωνήστε μαζί μας"
 
   constructor(
-
+    private contactForm: ContactFormService
   ) {
   }
 
   sendMessage() {
     // FIXME : to be implemented 
+    this.contactForm.createContactForm(this.message)
   }
 }

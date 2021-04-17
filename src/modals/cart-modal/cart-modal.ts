@@ -41,6 +41,7 @@ export class CartModal {
   }
 
   openProductPage(product) {
+    console.log(product)
     this.dismiss();
     let navigationExtras: NavigationExtras = {
       queryParams: {

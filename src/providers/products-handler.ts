@@ -77,39 +77,34 @@ export class ProductsHandler {
       slug: "pa_cutting-method",
       type: "select"
     })
-
-    console.log("ALL PRODUCT ATTRIBUTES : ", this.allProductAttributes)
   }
 
-  // FIXME : this fn should be temporary and be used until the wordpress attributes/variations are set properly
-  public getProductVariations(productId: number) {
-    this.http.get(
-      `${this.url}/wp-json/wc/v3/products/${productId}/variations?consumer_key=${
-        this.consumerKey
-      }&consumer_secret=${this.consumerSecret}`
-    ).subscribe(attrs => {
-      this.allProductAttributes = attrs;
+  public getProductVariations(productId: number): Promise<any> {
+    let that = this;
+    return new Promise(function(resolve, reject){
+      that.http.get(
+        `${that.url}/wp-json/wc/v3/products/${productId}/variations?consumer_key=${
+          that.consumerKey
+        }&consumer_secret=${that.consumerSecret}`
+      ).subscribe(vars => {
+        resolve(vars);
+      })
     })
-
-    return this.allProductAttributes;
   }
 
-  public mapOptionNameToVariationId(option: string): number {
-    switch(option) {
-      case "Μερίδες":
-        return 3009;
-      case "Ολόκληρο κομμάτι":
-        return 3008;
-      case "Μερίδες":
-        return 3009;
-      case "Μερίδες":
-        return 3009;
-      default:
-        return null;
-    }
-  }
-
-  public retrieveLists() {
-    
-  }
+  // NOT USED CURRENTLY
+  // public mapOptionNameToVariationId(option: string): number {
+  //   switch(option) {
+  //     case "Μερίδες":
+  //       return 3009;
+  //     case "Ολόκληρο κομμάτι":
+  //       return 3008;
+  //     case "Μερίδες":
+  //       return 3009;
+  //     case "Μερίδες":
+  //       return 3009;
+  //     default:
+  //       return null;
+  //   }
+  // }
 }

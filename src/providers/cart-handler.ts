@@ -22,6 +22,7 @@ export class CartHandler {
   public addProductToCart(product: any) {
     this.productList.push(product);
     this.totalPrice += parseFloat(product.price.replace(',', '.')) * product.weight;       // Missing logics for when we decide to use quantity
+    console.log(product, "   -   ", this.totalPrice)
   }
 
   public getProductsInCart() {

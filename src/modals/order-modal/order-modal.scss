@@ -25,8 +25,14 @@
 
   .form-container {
     width: 100%;
+    text-align: center;
+    // padding-left: 5vw;
+    // padding-right: 5vw;
     .input-wrapper {
-      width: 90vw;
+      width: 85vw;
+      margin: 0;
+      margin-left: auto;
+      margin-right: auto;
       .label {
         font-size: 3.8vw;
       }
@@ -37,20 +43,22 @@
 
     .reg-unit {
       display: inline-block;
-      width: 60%;
+      width: 50%;
     }
 
     .zip {
       display: inline-block;
       width: 30%;
+      margin-left: 5%;
     }
     .address {
       display: inline-block;
-      width: 60%;
+      width: 57%;
     }
     .floor {
       display: inline-block;
-      width: 30%;
+      width: 23%;
+      margin-left: 5%;
     }
 
     // .street {
@@ -67,5 +75,7 @@
   .button-container {
     width: 100%;
     text-align: center;
+    margin-top: 8vw;
+    margin-bottom: 60vw;
   }
 }

@@ -22,17 +22,16 @@
     </div>
 
     <!-- PURCHASE AREA -->
-    <div class="purchase-area">
+    <div class="purchase-area" *ngIf="loadingComplete">
 
       <!-- attribute selection of the product if existing -->
       <div *ngIf="attributes.length > 0" class="product-attribute">
         <div *ngFor="let attr of attributes; let i = index">
-          <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding input-wrapper" 
-            (ionChange)="selectAttribute($event, i)">
+          <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding input-wrapper">
             <ion-label class="label" position="floating" [innerHTML]="attr.name"></ion-label>
-            <ion-select class="input" [(ngModel)]="attributeSelections[i]" >
-              <ion-select-option *ngFor="let option of attr.options" [value]="option">
-                {{option}}</ion-select-option>
+            <ion-select class="input" [(ngModel)]="variationSelections[i]" (ionChange)="selectVariation($event, i)">
+              <ion-select-option *ngFor="let variation of variations" [value]="variation.name" >
+                {{variation.name}}</ion-select-option>
             </ion-select>
           </ion-item>
         </div>
@@ -56,7 +55,8 @@
       <p class="price" >{{(calculatePrice() | number : '1.2-2').replace('.', ',')}} €</p>
 
       <!-- confirmation button -->
-      <cta-button [icon]="cartIcon" [label]="buttonLabel" [disabled]="checkIfAttributesAreSelected()" (onClick)="addToCart()">
+      <cta-button [icon]="cartIcon" [label]="buttonLabel" [disabled]="checkIfVariationIsSelected()" 
+        (onClick)="addToCart()">
       </cta-button>
     </div>
   </div>

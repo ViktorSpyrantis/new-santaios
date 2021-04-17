@@ -47,7 +47,7 @@
     <!-- 'SEND' BUTTON -->
     <div class="button-container">
       <cta-button [ionIcon]="button.icon" [label]="button.label" 
-      [disabled]="!message.name || !message.email || !message.message" (onClick)="sendMessage()">
+      [disabled]="false" (onClick)="sendMessage()">
     </cta-button>
     </div>
   </div>

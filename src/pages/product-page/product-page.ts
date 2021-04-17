@@ -22,10 +22,18 @@ export class ProductPage {
   priceBasedOnWeight: boolean = true;
   kilos: number =  0.5;
   pieces: number = 1;
-  attributeSelections: any[] = [];
+  loadingComplete: boolean = false;
+
+  // FIXME : vars here will change after variation / attribute refactoring of wordpress
+  // attributeSelections: any[] = [];
   attributes: {
     name: string,
     options: string[]
+  }[] = [];
+  variationSelections: any[] = [];
+  variations: {
+    id: number,
+    name: string
   }[] = [];
 
   bg_img = "assets/icon/white_bg.svg";        // FIXME : change the image
@@ -59,6 +67,7 @@ export class ProductPage {
     this.kilos =  0.5;
     this.pieces = 1;
     this.attributes = [];
+    this.loadingComplete = false;
 
     // add product attributes if they exist
     this.product.attributes.forEach(attr => {
@@ -66,8 +75,18 @@ export class ProductPage {
         name: this.productsHandler.getAttributeName(attr.id),
         options: attr.options
       })
-      // this.attributeSelections.push(null)
     });
+
+    this.productsHandler.getProductVariations(this.product.id).then(vars => {
+      vars.forEach(variation => {
+        this.variations.push({
+          id: variation.id,
+          name: variation.attributes[0].option
+        })
+      });
+      this.loadingComplete = true;
+      console.log(this.variations)
+    })
   }
 
   calculatePrice(): number {
@@ -75,23 +94,29 @@ export class ProductPage {
   }
 
   async addToCart() {
-    let attributeText = ' - ';
-    this.attributeSelections.forEach(selection => {attributeText += selection})
-    this.product.name += attributeText;
-    console.log("PROD ", this.product.name);
+    // add variations to the product (for array of variations)
+    this.variationSelections.forEach(selection => {
+      for (let i = 0; i < this.variations.length; i++) {
+        if (selection == this.variations[i].name) {
+          console.log(this.variations[i].id);
+          this.product.variations.push(this.variations[i].id);
+        }
+      }
 
-    this.priceBasedOnWeight ? this.product.weight = this.kilos : this.product.quantity = this.pieces;
+    });
+
+    this.product.weight = this.priceBasedOnWeight ? this.kilos : this.pieces;
     this.cartHandler.addProductToCart(this.product)
     this.router.navigate(['/dashboard']);
   }
 
-  selectAttribute(event, index) {
-    this.attributeSelections[index] = event.detail.value;
-    console.log(this.attributeSelections)
+  selectVariation(event, index) {
+    this.variationSelections[index] = event.detail.value;
+    console.log(this.variationSelections)
   }
 
-  checkIfAttributesAreSelected(): boolean {
-    if(this.attributeSelections.length < this.attributes.length) return true;
+  checkIfVariationIsSelected(): boolean {
+    if(this.variationSelections.length < this.attributes.length) return true;
     else return false;
   }
 
