@@ -29,16 +29,20 @@ export class CreateOrder {
       address: string,
       floor: string,
       email: string,
-      extraInfo: string
+      extraInfo: string,
+      paymentMethod: {
+        id: string,
+        title: string
+      }
     }
   ) {
     if (!userInfo.address) userInfo.address = '';
 
     let orderData = {
-      payment_method: "cod",
-      payment_method_title: "Cash on delivery",
+      payment_method: userInfo.paymentMethod.id,
+      payment_method_title: userInfo.paymentMethod.title,
       set_paid: false,
-      status: "processing",
+      status: userInfo.paymentMethod.id == "cod" ? "processing" : "on-hold",
       customer_note: userInfo.extraInfo,
       billing: {
         first_name: userInfo.name,

@@ -5,8 +5,10 @@
     <ion-icon id="close-modal-icon" name="close-circle-outline" color="black" (click)="dismiss()"></ion-icon>
   </div>
 
+  <!-- TITLE -->
   <h2 class="title">{{title}}</h2>
 
+  <!-- FORM CONTAINER FOR ADDRESS INFO-->
   <div class="form-container">
     <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding name input-wrapper">
       <ion-label class="label" position="floating" [innerHTML]="forms.name"></ion-label>
@@ -26,7 +28,7 @@
 
     <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding reg-unit" (ionChange)="getAreas()">
       <ion-label class="label" position="floating" [innerHTML]="forms.regUnit"></ion-label>
-      <ion-select class="input" [(ngModel)]="customerInfo.regUnit">
+      <ion-select interface="action-sheet" [(ngModel)]="customerInfo.regUnit">
         <ion-select-option *ngFor="let unit of regionalUnits" [value]="unit">{{unit}}</ion-select-option>
       </ion-select>
     </ion-item>
@@ -39,22 +41,11 @@
     <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding input-wrapper" *ngIf="customerInfo.regUnit"
       (ionChange)="areaChanged()">
       <ion-label class="label" position="floating" [innerHTML]="forms.area"></ion-label>
-      <!-- <ion-input autocapitalize class="input" [(ngModel)]="customerInfo.city"></ion-input> -->
-      <ion-select class="input" [(ngModel)]="customerInfo.area">
+      <ion-select interface="action-sheet" [(ngModel)]="customerInfo.area">
         <ion-select-option *ngFor="let area of areas" [value]="area">{{area}}</ion-select-option>
       </ion-select>
     </ion-item>
 
-    <!-- Street and number inputs. Single address input is used instead now -->
-    <!-- <ion-item color="rgba(235, 236, 235, 0.945)" class="street input-wrapper" *ngIf="areaNeedsStreetAndNumberInfo">
-      <ion-label class="label" position="floating" [innerHTML]="forms.street"></ion-label>
-      <ion-input class="input" [(ngModel)]="customerInfo.street"></ion-input>
-    </ion-item>
-
-    <ion-item color="rgba(235, 236, 235, 0.945)" class="number input-wrapper" *ngIf="areaNeedsStreetAndNumberInfo">
-      <ion-label class="label" position="floating" [innerHTML]="forms.number"></ion-label>
-      <ion-input class="input" type="number" inputmode="numeric" [(ngModel)]="customerInfo.number"></ion-input>
-    </ion-item> -->
 
     <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding address" *ngIf="areaNeedsAddressInfo">
       <ion-label class="label" position="floating" [innerHTML]="forms.address"></ion-label>
@@ -63,7 +54,7 @@
 
     <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding floor" *ngIf="areaNeedsAddressInfo">
       <ion-label class="label" position="floating" [innerHTML]="forms.floor"></ion-label>
-      <ion-select class="input" [(ngModel)]="customerInfo.floor">
+      <ion-select interface="action-sheet" [(ngModel)]="customerInfo.floor">
         <ion-select-option *ngFor="let floor of floors" [value]="floor">{{floor}}</ion-select-option>
       </ion-select>
     </ion-item>
@@ -76,6 +67,16 @@
     <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding input-wrapper">
       <ion-label class="label" position="floating" [innerHTML]="forms.extraInfo"></ion-label>
       <ion-textarea class="extra-info-input" [(ngModel)]="customerInfo.extraInfo"></ion-textarea>
+    </ion-item>
+  </div>
+
+  <!-- FORM CONTAINER PAYMENT METHOD -->
+  <div class="form-container purchase-method-form-container">
+    <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding input-wrapper">
+      <ion-label class="label" position="floating" [innerHTML]="forms.paymentMethod"></ion-label>
+      <ion-select interface="action-sheet" (ionChange)="assignPaymentMethod($event)" [(ngModel)]="customerInfo.paymentMethod">
+        <ion-select-option *ngFor="let method of purchaseMethods" [value]="method.title">{{method.title}}</ion-select-option>
+      </ion-select>
     </ion-item>
   </div>
 

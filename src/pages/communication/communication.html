@@ -24,7 +24,7 @@
     <div class="form-container">
       <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding input-wrapper">
         <ion-label class="label" position="floating" [innerHTML]="forms.nameSurname"></ion-label>
-        <ion-input required="true" autocapitalize="on" [(ngModel)]="message.name" class="input"></ion-input>
+        <ion-input required="true" autocapitalize="on" [(ngModel)]="message.nameSurname" class="input"></ion-input>
       </ion-item>
 
       <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding input-wrapper">
@@ -44,10 +44,16 @@
       </ion-item>
     </div>
 
+    <div *ngIf="messageRequestSuccesful || messageRequestFailed" class="outcome-message-wrapper">
+      <p [style.color]="messageRequestSuccesful && !messageRequestFailed ? 'green' : 'red'"
+        class="outcome-message" >
+        {{outcomeMessage}}</p>
+    </div>
+
     <!-- 'SEND' BUTTON -->
     <div class="button-container">
       <cta-button [ionIcon]="button.icon" [label]="button.label" (onClick)="sendMessage()"
-        [disabled]="!message.name || !message.email || !message.subject || !message.message">
+        [disabled]="!message.nameSurname || !message.email || !message.subject || !message.message">
       </cta-button>
     </div>
   </div>

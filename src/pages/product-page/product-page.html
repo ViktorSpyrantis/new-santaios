@@ -13,8 +13,12 @@
     <!-- PRODUCT NAME -->
     <h1 class="product-name">{{product.name}}</h1>
 
+    <div *ngIf="!loadingComplete" class="spinner-placeholder">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+
     <!-- PRODUCT INFO -->
-    <div class="info-table" *ngIf="product.info != '-'">
+    <div class="info-table" *ngIf="loadingComplete && product.description">
       <h3 class="title">Πληροφορίες</h3>
       <div class="value-container">
         <p class="info" innerHTML="{{product.description}}"></p>
@@ -29,7 +33,8 @@
         <div *ngFor="let attr of attributes; let i = index">
           <ion-item color="rgba(235, 236, 235, 0.945)" class="ion-no-padding input-wrapper">
             <ion-label class="label" position="floating" [innerHTML]="attr.name"></ion-label>
-            <ion-select class="input" [(ngModel)]="variationSelections[i]" (ionChange)="selectVariation($event, i)">
+            <ion-select interface="action-sheet" class="input" [(ngModel)]="variationSelections[i]" 
+              (ionChange)="selectVariation($event, i)">
               <ion-select-option *ngFor="let variation of variations" [value]="variation.name" >
                 {{variation.name}}</ion-select-option>
             </ion-select>

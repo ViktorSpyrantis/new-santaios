@@ -8,7 +8,13 @@ import { ContactFormService } from 'src/providers/contact-form-service';
 })
 export class CommunicationPage {
 
-  messageSentSuccesfully: boolean;
+  messageRequestSuccesful: boolean;
+  messageRequestFailed: boolean;
+  outcomeMessage: string;
+  outcome = {
+    resolved: "Το μήνυμά σας έχει σταλεί επιτυχώς!",
+    rejected: "Αντιμετωπίσαμε κάποιο πρόβλημα κατά την αποστολή του μηνύματός σας."
+  }
 
   info: {
     address: {
@@ -64,10 +70,26 @@ export class CommunicationPage {
   ) {
   }
 
+  ionViewWillEnter() {
+    this.message.nameSurname = null;
+    this.message.email = null;
+    this.message.subject = null;
+    this.message.message = null;
+    this.messageRequestSuccesful = null;
+    this.messageRequestFailed = null;
+    this.outcomeMessage = null;
+  }
+
   sendMessage() {
-    // FIXME : to be implemented 
     this.contactForm.createContactForm(this.message).then(result => {
-      this.messageSentSuccesfully = true;
+      console.log()
+      this.messageRequestSuccesful = true;
+      this.messageRequestFailed = false;
+      this.outcomeMessage = this.outcome.resolved;
+    }).catch(error => {
+      this.messageRequestFailed = true;
+      this.messageRequestSuccesful = false;
+      this.outcomeMessage = this.outcome.rejected;
     });
     this.message.nameSurname = null;
     this.message.email = null;

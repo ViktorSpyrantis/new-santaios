@@ -62,31 +62,35 @@ export class ProductPage {
     });
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     // init values because their state will remain even after selecting another product
     this.kilos =  0.5;
     this.pieces = 1;
     this.attributes = [];
     this.loadingComplete = false;
 
-    // add product attributes if they exist
-    this.product.attributes.forEach(attr => {
-      this.attributes.push({
-        name: this.productsHandler.getAttributeName(attr.id),
-        options: attr.options
-      })
-    });
-
-    this.productsHandler.getProductVariations(this.product.id).then(vars => {
-      vars.forEach(variation => {
-        this.variations.push({
-          id: variation.id,
-          name: variation.attributes[0].option
+    // add product attributes if they exist and call the get variations API
+    if (this.product.attributes.length > 0) {
+      this.product.attributes.forEach(attr => {
+        this.attributes.push({
+          name: this.productsHandler.getAttributeName(attr.id),
+          options: attr.options
         })
       });
+      this.productsHandler.getProductVariations(this.product.id).then(vars => {
+        vars.forEach(variation => {
+          this.variations.push({
+            id: variation.id,
+            name: variation.attributes[0].option
+          })
+        });
+        this.loadingComplete = true;
+        console.log("Product variations:  ", this.variations)
+      })
+    } else {
       this.loadingComplete = true;
-      console.log(this.variations)
-    })
+    }
+
   }
 
   calculatePrice(): number {

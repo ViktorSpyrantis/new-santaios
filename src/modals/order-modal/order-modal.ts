@@ -1,9 +1,8 @@
 
-import { Component, Input } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { Component, ComponentFactoryResolver, Input } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { CartHandler } from 'src/providers/cart-handler';
 import { ModalHandler } from 'src/providers/modal-handler';
-import { OrderByEmailHandler } from 'src/providers/order-by-email-handler';
 import { UNITS } from 'src/providers/regional-units';
 import { AREAS } from 'src/providers/areas';
 import { CreateOrder } from 'src/providers/create-order';
@@ -21,8 +20,18 @@ export class OrderModal {
   regionalUnits = [];
   areas = [];
   areaNeedsAddressInfo: boolean = false;
-  // areaNeedsStreetAndNumberInfo: boolean = false;
-  floors = ['Ισόγειο', '1', '2' ,'3' ,'4', '5', '6'];
+  floors = ['Ισόγειο', '1', '2' ,'3' ,'4', '5', '6', '7', '8'];
+  // We handle payment methods statically, not dynamically
+  purchaseMethods = [
+    {
+      id: 'cod',
+      title: 'Αντικαταβολή'
+    }, 
+    {
+      id: 'other_payment',
+      title: 'Πληρωμή μέσω POS'
+    }
+  ];
   
   forms = {
     name: "Όνομα <font color='red'>*</font>",
@@ -36,7 +45,8 @@ export class OrderModal {
     address: "Διεύθυνση <font color='red'>*</font>",
     floor: "Όροφος",
     email: "E-mail <font color='red'>*</font>",
-    extraInfo: "Πρόσθετες πληροφορίες"
+    extraInfo: "Πρόσθετες πληροφορίες",
+    paymentMethod: "Μέθοδος πληρωμής"
   }
 
   customerInfo: {
@@ -51,7 +61,11 @@ export class OrderModal {
     address: string,
     floor: string,
     email: string,
-    extraInfo: string
+    extraInfo: string,
+    paymentMethod: {
+      id: string,
+      title: string
+    }
   } = {
     name: null,
     surname: null,
@@ -64,31 +78,20 @@ export class OrderModal {
     address: null,
     floor: "Ισόγειο",
     email: null,
-    extraInfo: null
+    extraInfo: null,
+    paymentMethod: {
+      id: null,
+      title: null
+    }
   }
 
   constructor(
-    private modalCtrl: ModalController,
-    private emailOrder: OrderByEmailHandler,
     private alertController: AlertController,
     private cart: CartHandler,
     private modalHandler: ModalHandler,
     private order: CreateOrder
   ) {
     this.regionalUnits = UNITS;
-  }
-
-  private configProductsString(): string {
-    let products: string = '';
-
-    this.cart.getProductsInCart().forEach(prod => {
-      products += 
-        prod.name + '\r\n' +
-        'ΤΙΜΗ: ' + (parseFloat(prod.price.replace(/,/g, '.')) * (prod.weight ? prod.weight : prod.quantity)) + 
-        '\r\n \r\n'
-    })
-
-    return products;
   }
 
   // Show alert popup for order confirmation
@@ -141,7 +144,7 @@ export class OrderModal {
   requiredFieldsNotFilled(): boolean {
     if (this.customerInfo.name && this.customerInfo.surname && this.customerInfo.phone && 
       this.customerInfo.area && this.customerInfo.regUnit && this.customerInfo.email 
-      && (this.areaNeedsAddressInfo ? this.customerInfo.address : true))
+      && (this.areaNeedsAddressInfo ? this.customerInfo.address : true) && this.customerInfo.paymentMethod.title)
       return false;
     else {
       return true;
@@ -166,11 +169,16 @@ export class OrderModal {
     })
   }
 
+  assignPaymentMethod(event) {
+    this.purchaseMethods.forEach(method => {
+      if (method.title == event.detail.value) this.customerInfo.paymentMethod = method;
+    })
+  }
+
   // FIXME : handle all functionality on a page rather than on modal maybe
   proceedWithOrder() {
     let products: { product_id: number, variation_id?: number, quantity: number}[] = [];
     this.cart.getProductsInCart().forEach(prod => {
-      console.log(prod.variations.slice(-1)[0])
       prod.variations[prod.variations.length - 1] ? 
       products.push({
         product_id: prod.id,
@@ -184,7 +192,6 @@ export class OrderModal {
     })
 
     this.order.handleOrder(products, this.customerInfo);
-    console.log(this.cart.getProductsInCart());
     this.dismiss();
     this.cart.deleteProducts();
   }

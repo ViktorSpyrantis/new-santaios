@@ -59,6 +59,19 @@
       }
     }
 
+    .outcome-message-wrapper {
+      width: 100%;
+      margin-top: 14vw;
+      margin-bottom: 6vw;
+      text-align: center;
+      .outcome-message {
+        width: 90vw;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
     .button-container {
       margin-top: 7vw;
       width: 100%;

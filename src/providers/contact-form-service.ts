@@ -1,8 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 // import * as $ from 'jquery';
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Injectable()
 export class ContactFormService {
@@ -31,9 +29,23 @@ export class ContactFormService {
       redirect: 'follow'
     };
 
-    fetch(this.url, requestOptions)
-      .then(response => response.text())
-      .then(result => console.log("********   CONTACT FORM RESPONSE   ******** \n", result))
-      .catch(error => console.log('error', error));
+    let that = this;
+    return new Promise(function(resolve, reject){
+      fetch(that.url, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+          if (JSON.parse(result).status == "mail_sent") {
+            console.log("********   CONTACT FORM SUCCESS   ******** \n\n", JSON.parse(result));
+            resolve(JSON.parse(result));
+          } else {
+            console.log('"********   CONTACT FORM ERROR   ********', JSON.parse(result));
+            reject(JSON.parse(result));
+          }
+        })
+        .catch(error => {
+          console.log('"********   CONTACT FORM ERROR   ********', error);
+          reject(error);
+        });
+    })
   }
 }
