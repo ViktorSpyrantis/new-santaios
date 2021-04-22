@@ -3,7 +3,6 @@
   <div class="content">
 
     <!-- PRODUCT IMAGE -->
-    <!-- FIXME : add zooming later -->
     <div class="img-container">
       <pinch-zoom style="background-color: rgba(235, 236, 235, 0.945)">
         <img class="product-img" src="{{product.images[0].src.replace('scaled', '300x300')}}">
@@ -13,8 +12,9 @@
     <!-- PRODUCT NAME -->
     <h1 class="product-name">{{product.name}}</h1>
 
+    <!-- SPINNER ACTIVE UNTIL ALL LOADING IS COMPLETE/ -->
     <div *ngIf="!loadingComplete" class="spinner-placeholder">
-      <ion-spinner name="crescent"></ion-spinner>
+      <ion-spinner name="lines"></ion-spinner>
     </div>
 
     <!-- PRODUCT INFO -->

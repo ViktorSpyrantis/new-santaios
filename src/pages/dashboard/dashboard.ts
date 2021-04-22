@@ -9,13 +9,13 @@ import { ProductsHandler } from 'src/providers/products-handler';
   styleUrls: ['dashboard.scss'],
 })
 export class Dashboard {
-  loadingComplete: boolean = false;
+  productsHaveBeenRetrieved: boolean = false;
 
   suggestedProductsTitle = "Προτεινόμενα  προϊόντα"
   suggestedProducts = [];
-
   weeklyOffersTitle = "Προσφορές εβδομάδος";
   weeklyOffers = [];
+
   bgImage: string = "assets/img/bg.png"
   logoBg: string = "assets/icon/logo_bg.svg"
 
@@ -26,11 +26,13 @@ export class Dashboard {
   ) {
     this.productsHandler.retrieveProducts().then(allProducts => {
       this.initLists(allProducts);
-      this.loadingComplete = true;
+      this.productsHaveBeenRetrieved = true;
     }).catch(() => {
       this.initLists(this.productsHandler.getAllProducts());
-      this.loadingComplete = true;
+      this.productsHaveBeenRetrieved = true;
     });
+
+    // this is placed outside of the above then/catch clause in order not to take more time to load
     this.productsHandler.retrieveProductAttributes();
   }
 

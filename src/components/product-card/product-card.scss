@@ -123,3 +123,9 @@
     text-overflow: ellipsis;
   }
 }
+
+// card has active styling on click 
+.card-container:active {
+  transform: scale(1.1);
+	transition: .1s;
+}

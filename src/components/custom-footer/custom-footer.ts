@@ -72,7 +72,9 @@ export class CustomFooter {
       this.modalHandler.openCartModal();
     } else {
       this.modalHandler.closeAllModals();
-      this.router.navigate(['/' + link]);
+      setTimeout(() => {
+        this.router.navigate(['/' + link]);
+      }, 180);
     }
   }
 }

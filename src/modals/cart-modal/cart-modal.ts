@@ -11,7 +11,7 @@ import { OrderModal } from '../order-modal/order-modal';
   styleUrls: ['cart-modal.scss'],
 })
 export class CartModal {
-  @Input() product: any;
+  // @Input() product: any;
 
   title: string = "ΚΑΛΑΘΙ";
   weightPriceText: string = "Τιμή κιλού: ";
@@ -24,6 +24,7 @@ export class CartModal {
   emptyCartText: string = "Το καλαθι σας είναι άδειο";
   productsInCart = [];
   totalPrice: number;
+  
 
   constructor(
     private modalCtrl: ModalController,
@@ -60,6 +61,13 @@ export class CartModal {
     this.cartHandler.removeProduct(index);
     this.productsInCart = this.cartHandler.getProductsInCart();
     this.totalPrice = this.cartHandler.getTotalPrice();
+  }
+
+  checkIfPriceIsBasedOnWeight(product) {
+    for(let i = 0; i < product.categories.length; i++) {
+      if (product.categories[i].name == "Τεμάχια") return false;
+    }
+    return true;
   }
 
   dismiss() {

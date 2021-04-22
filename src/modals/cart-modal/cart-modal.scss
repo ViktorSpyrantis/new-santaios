@@ -48,31 +48,37 @@
 
   .product {
     display: flex;
-    height: 18vw;
+    height: 20vw;
     padding: 1vw 2vw 1vw 2vw;
     border: 0.3vw solid grey;
-    margin: 1vw 3vw 1vw 3vw;
+    margin: 2.5vw 3vw 1vw 3vw;
     .image-container {
       display: inline-block;
-      width: 25vw;
+      width: 20vw;
       .image {
         display: inline-block;
-        width: 18vw;
-        height: 15vw;
+        width: 20vw;
+        height: 17vw;
       }
     }
 
-    .all-text {
+    .all-text-wrapper {
       display: inline-block;
-      width: 60vw;
+      width: 59vw;
       vertical-align: middle;
       margin-top: auto;
       margin-bottom: auto;
       margin-left: 1.5vw;
       .text-line {
         display: inline-block;
-        width: 60vw;
+        width: 50vw;
         margin: 0;
+        white-space: nowrap;
+      }
+
+      #product-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 

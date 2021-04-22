@@ -28,6 +28,9 @@ export class CategoryList {
         title: title
       }
     };
-    this.router.navigate(['/category'], navigationExtras)
+    setTimeout(() => {
+      this.router.navigate(['/category'], navigationExtras)
+    }, 180);
+
   }
 }

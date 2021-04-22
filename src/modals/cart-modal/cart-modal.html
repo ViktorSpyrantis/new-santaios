@@ -14,15 +14,17 @@
         <img class="image right-margin" src="{{product.images[0].src.replace('scaled', '100x100')}}">
       </div>
 
-      <div class="all-text">
+      <div class="all-text-wrapper">
+        <p id="product-name" class="text-line light-black">{{product.name}}</p>
         <p class="text-line">
-          <span class="light-black right-margin">{{product.name}}</span>
-          <span class="bold-black">{{product.weight ? ('' + product.weight).replace('.', ',') : product.quantity}}</span>
-          <span class="bold-black"> {{product.weight ? 'kg' : 'τεμάχια'}}</span>
+          <span class="light-black right-margin">{{checkIfPriceIsBasedOnWeight(product) ? 'Βάρος:' : 'Τεμάχια:'}}</span>
+          <span class="bold-black">{{product.weight}}</span>
+          <span class="bold-black">{{checkIfPriceIsBasedOnWeight(product) ? 'kg' : ''}}</span>
         </p>
         <p class="text-line">
-          <span class="light-black right-margin">{{product.weight ? weightPriceText : piecePriceText}}</span>
+          <span class="light-black right-margin">{{checkIfPriceIsBasedOnWeight(product) ? weightPriceText : piecePriceText}}</span>
           <span class="bold-black">{{product.price}}</span>
+          <span class="bold-black">€</span>
         </p>
       </div>
       <ion-icon id="delete-product-icon" name="close-outline" [color]="grey" (click)="removeProduct(i)"></ion-icon>

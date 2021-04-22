@@ -64,6 +64,8 @@ export class ProductCard {
         // price: this.product.price
       }
     };
-    this.router.navigate(['/product'], navigationExtras)
+    setTimeout(() => {
+      this.router.navigate(['/product'], navigationExtras);
+    }, 180);
   }
 }

@@ -50,7 +50,6 @@ export class ProductPage {
     this.route.queryParams.subscribe(params => {
       if (params) {
         this.product = JSON.parse(params.product);
-        
         // logics for weight or quantity based price
         for(let i = 0; i < this.product.categories.length; i++) {
           if (this.product.categories[i].name == "Τεμάχια") {
@@ -111,7 +110,9 @@ export class ProductPage {
 
     this.product.weight = this.priceBasedOnWeight ? this.kilos : this.pieces;
     this.cartHandler.addProductToCart(this.product)
-    this.router.navigate(['/dashboard']);
+    setTimeout(() => {
+      this.router.navigate(['/dashboard']);
+    }, 180);
   }
 
   selectVariation(event, index) {

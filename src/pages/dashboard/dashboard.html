@@ -1,32 +1,35 @@
 <custom-header></custom-header>
 <div id="dashboard">
+
+  <!-- LOGO -->
   <div class="logo-container" id="logo-container">
     <img class="logo-top" src="{{logoBg}}">
   </div>
 
-  <category-list *ngIf="loadingComplete"></category-list>
-
-  <!-- FIXME : DELETE ALL THESE MAYBE -->
-  <!-- <div *ngIf="loadingComplete" class="horizontal-scroll">
-    <category-button *ngFor="let cat of categoryList" [name]="cat.greek" [icon]="cat.icon" 
-       (click)="openCategory(cat.id, cat.page_title)">
-    </category-button>
-  </div> -->
-
-  
-  <div class="card-container" *ngIf="loadingComplete && weeklyOffers.length > 0" >
-    <p class="cards-title">{{weeklyOffersTitle}}</p>
-    <div class="horizontal-scroll">
-      <product-card *ngFor="let prod of weeklyOffers; let i = index" [small]="false" [product]="prod" [dayIndex]="i">
-      </product-card>
-    </div>
+  <!-- SPINNER ACTIVE UNTIL ALL LOADING IS COMPLETE/ -->
+  <div *ngIf="!productsHaveBeenRetrieved || weeklyOffers.length == 0 || suggestedProducts.length == 0" class="spinner-placeholder">
+    <ion-spinner name="lines"></ion-spinner>
   </div>
 
-  <div class="card-container" *ngIf="loadingComplete && suggestedProducts.length > 0">
-    <p class="cards-title">{{suggestedProductsTitle}}</p>
-    <div class="horizontal-scroll">
-      <product-card *ngFor="let prod of suggestedProducts" [small]="false" [product]="prod">
-      </product-card>
+  <!-- LIST OF PRODUCT CATEGORIES -->
+  <div *ngIf="productsHaveBeenRetrieved && weeklyOffers.length > 0 && suggestedProducts.length > 0">
+    <category-list></category-list>
+
+    <!-- PRODUCT CARDS FOR WEEK OFFERS, SUGGESTED PRODUCTS AND/OR OTHER LISTS -->
+    <div class="card-container">
+      <p class="cards-title">{{weeklyOffersTitle}}</p>
+      <div class="horizontal-scroll">
+        <product-card *ngFor="let prod of weeklyOffers; let i = index" [small]="false" [product]="prod" [dayIndex]="i">
+        </product-card>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <p class="cards-title">{{suggestedProductsTitle}}</p>
+      <div class="horizontal-scroll">
+        <product-card *ngFor="let prod of suggestedProducts" [small]="false" [product]="prod">
+        </product-card>
+      </div>
     </div>
   </div>
 </div>
